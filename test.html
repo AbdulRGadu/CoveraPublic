@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covera Tech Ltd - Innovation in Motion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-blue: #0B1D39;
+            --teal-accent: #00B8A9;
+            --silver-gray: #B0B6BF;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --black: #1a1a1a;
+        }
+
+        html, body {
+            background: var(--off-white);
+            color: var(--black);
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--teal-accent);
+            color: var(--white);
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--teal-accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .custom-cursor.active {
+            opacity: 1;
+        }
+
+        .custom-cursor.link-hover {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 184, 169, 0.1);
+            border-color: var(--teal-accent);
+        }
+
+        /* Navigation */
+        .sticky-nav {
+            position: fixed;
+            top: 30px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
+
+        .logo-accent {
+            color: var(--teal-accent);
+        }
+
+        #nav-btn {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            position: relative;
+        }
+
+        #nav-btn .icon {
+            width: 100%;
+            height: 100%;
+            stroke: var(--white);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            mix-blend-mode: difference;
+            transition: stroke 0.3s ease;
+        }
+
+        /* Fullscreen Takeover Navigation */
+        #takeover-nav {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: -100%;
+            left: 0;
+            z-index: 998;
+            transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow: hidden;
+        }
+
+        #takeover-nav.shown {
+            top: 0;
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .nav-contact {
+            flex: 1.5;
+            background: var(--navy-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 60px;
+            overflow: hidden;
+        }
+
+        .nav-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(0, 184, 169, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(0, 184, 169, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .nav-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .nav-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        .contact-items {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+
+        .contact-items li {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-items a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        .contact-items a:hover {
+            color: var(--teal-accent);
+            transform: translateX(10px);
+        }
+
+        .social {
+            font-size: 0.9rem;
+        }
+
+        .social a {
+            color: var(--teal-accent);
+            text-decoration: none;
+            margin: 0 15px 0 0;
+            transition: color 0.3s ease;
+        }
+
+        .social a:hover {
+            color: var(--white);
+        }
+
+        .nav-menu {
+            flex: 1;
+            background: var(--teal-accent);
+            display: flex;
+            align-items: center;
+            padding: 60px;
+        }
+
+        .nav-items {
+            list-style: none;
+            width: 100%;
+        }
+
+        .nav-items li {
+            margin-bottom: 2rem;
+        }
+
+        .nav-items a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 2.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-items a:hover {
+            color: var(--navy-blue);
+            transform: translateX(20px);
+        }
+
+        /* Hero Section */
+        section.hero {
+            min-height: 100vh;
+            background: var(--navy-blue);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom-right-radius: 150px;
+            overflow: hidden;
+        }
+
+        section.hero::before {
+            content: "";
+            background: var(--navy-blue);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            z-index: 1;
+        }
+
+        section.hero::after {
+            content: "";
+            background: var(--off-white);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            border-top-left-radius: 150px;
+            z-index: 2;
+        }
+
+        /* Tech Grid Background */
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(0, 184, 169, 0.1) 2px, transparent 2px),
+                linear-gradient(rgba(0, 184, 169, 0.1) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(0, 184, 169, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(0, 184, 169, 0.05) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            opacity: 0.6;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0, 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            }
+        }
+
+        /* Animated Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--teal-accent);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero-title .accent {
+            color: var(--teal-accent);
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--silver-gray);
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--teal-accent);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--teal-accent);
+        }
+
+        .hero-btn:hover {
+            background: transparent;
+            color: var(--teal-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 184, 169, 0.3);
+        }
+
+        /* Additional Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+            position: relative;
+        }
+
+        section.two {
+            background: var(--off-white);
+        }
+
+        section.three {
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #1a3a5a 100%);
+            color: var(--white);
+        }
+
+        section.four {
+            background: var(--teal-accent);
+            color: var(--white);
+        }
+
+        .section-content {
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .section-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sticky-nav {
+                padding: 0 20px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .nav-contact,
+            .nav-menu {
+                padding: 40px 30px;
+            }
+
+            .nav-title {
+                font-size: 2rem;
+            }
+
+            .nav-items a {
+                font-size: 2rem;
+            }
+
+            section.hero {
+                border-bottom-right-radius: 80px;
+            }
+
+            section.hero::before,
+            section.hero::after {
+                width: 80px;
+                height: 80px;
+                border-top-left-radius: 80px;
+            }
+
+            #nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeInUp 1s ease-out backwards;
+        }
+
+        .hero-title {
+            animation-delay: 0.2s;
+        }
+
+        .hero-subtitle {
+            animation-delay: 0.4s;
+        }
+
+        .hero-btn {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky-nav">
+        <a href="#" class="logo">Covera<span class="logo-accent">Tech</span></a>
+        <div id="nav-btn">
+            <svg class="icon" viewBox="0 0 50 50">
+                <line id="top-line" x1="10" y1="15" x2="40" y2="15"></line>
+                <line id="middle-line" x1="10" y1="25" x2="40" y2="25"></line>
+                <line id="bottom-line" x1="10" y1="35" x2="40" y2="35"></line>
+            </svg>
+        </div>
+    </nav>
+
+    <!-- Fullscreen Takeover Nav -->
+    <div id="takeover-nav">
+        <div class="nav-container">
+            <div class="nav-contact">
+                <div class="nav-content">
+                    <h2 class="nav-title">
+                        Build Your Digital Success With Us<span style="color: var(--teal-accent);">.</span>
+                    </h2>
+                    <ul class="contact-items">
+                        <li><a href="tel:+2348000000000">+234 (0) 800 000 0000</a></li>
+                        <li><a href="mailto:info@coveratechltd.com">info@coveratechltd.com</a></li>
+                        <li><a href="#">Lagos, Nigeria</a></li>
+                    </ul>
+                    <div class="social">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-items">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="tech-grid"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Where Innovation
+                <span class="accent">Meets Technology</span>
+            </h1>
+            <p class="hero-subtitle">
+                Building Tomorrow's Solutions Today
+            </p>
+            <a href="#contact" class="hero-btn">Start Your Project</a>
+        </div>
+    </section>
+
+    <!-- Section Two -->
+    <section class="two">
+        <div class="section-content">
+            <h2 class="section-title" style="color: var(--navy-blue);">Transforming Ideas Into Reality</h2>
+            <p class="section-description" style="color: var(--black);">
+                At Covera Tech Ltd, we don't just write code — we architect digital ecosystems that drive business growth. 
+                Our expertise spans the full spectrum of technology, from custom software development to enterprise cloud solutions.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section Three -->
+    <section class="three">
+        <div class="section-content">
+            <h2 class="section-title">Powered by Innovation</h2>
+            <p class="section-description">
+                We leverage cutting-edge technologies and industry best practices to deliver solutions that scale with your business. 
+                Our agile approach ensures flexibility, rapid deployment, and continuous improvement.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section Four -->
+    <section class="four">
+        <div class="section-content">
+            <h2 class="section-title">Ready to Elevate Your Business?</h2>
+            <p class="section-description">
+                Let's collaborate to turn your vision into a powerful digital solution. 
+                From concept to deployment, we're with you every step of the way.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const links = document.querySelectorAll('a, button, #nav-btn');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.classList.add('active');
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('link-hover');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('link-hover');
+            });
+        });
+
+        // Navigation Toggle
+        const navBtn = document.getElementById('nav-btn');
+        const takeoverNav = document.getElementById('takeover-nav');
+        const topLine = document.getElementById('top-line');
+        const middleLine = document.getElementById('middle-line');
+        const bottomLine = document.getElementById('bottom-line');
+        let isOpen = false;
+
+        navBtn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            takeoverNav.classList.toggle('shown');
+            
+            if (isOpen) {
+                topLine.setAttribute('transform', 'rotate(45 25 25)');
+                middleLine.setAttribute('opacity', '0');
+                bottomLine.setAttribute('transform', 'rotate(-45 25 25)');
+            } else {
+                topLine.setAttribute('transform', 'rotate(0)');
+                middleLine.setAttribute('opacity', '1');
+                bottomLine.setAttribute('transform', 'rotate(0)');
+            }
+        });
+
+        // Close nav when clicking a link
+        document.querySelectorAll('#takeover-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (isOpen) {
+                    navBtn.click();
+                }
+            });
+        });
+
+        // Create Particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 1s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
