@@ -44,6 +44,9 @@
 
 html {
     scroll-behavior: smooth;
+    /* Enable hardware acceleration */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 body {
@@ -219,7 +222,7 @@ body {
     overflow: hidden;
 }
 
-/* Add subtle glow to the entire hero section */
+/* Simplified hero background pattern for better performance */
 .hero::before {
     content: '';
     position: absolute;
@@ -228,17 +231,14 @@ body {
     right: 0;
     bottom: 0;
     background-image: 
-        linear-gradient(90deg, rgba(11, 29, 57, 0.08) 2px, transparent 2px),
-        linear-gradient(rgba(11, 29, 57, 0.08) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(0, 184, 169, 0.06) 1px, transparent 1px),
-        linear-gradient(rgba(0, 184, 169, 0.06) 1px, transparent 1px),
-        linear-gradient(45deg, rgba(0, 184, 169, 0.04) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(0, 184, 169, 0.04) 25%, transparent 25%);
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px, 80px 80px, 80px 80px;
-    background-position: -2px -2px, -2px -2px, 0 0, 0 0, 0 0, 40px 40px;
+        linear-gradient(90deg, rgba(11, 29, 57, 0.06) 2px, transparent 2px),
+        linear-gradient(rgba(11, 29, 57, 0.06) 2px, transparent 2px),
+        linear-gradient(45deg, rgba(0, 184, 169, 0.03) 25%, transparent 25%);
+    background-size: 100px 100px, 100px 100px, 60px 60px;
+    background-position: -2px -2px, -2px -2px, 0 0;
     opacity: 1;
     pointer-events: none;
-    box-shadow: inset 0 0 200px rgba(0, 184, 169, 0.05);
+    box-shadow: inset 0 0 150px rgba(0, 184, 169, 0.03);
 }
 
 /* Additional floating glow elements */
@@ -292,147 +292,72 @@ body {
     position: absolute;
     top: -50%;
     right: -20%;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(0, 184, 169, 0.15) 0%, rgba(11, 29, 57, 0.05) 50%, transparent 70%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 184, 169, 0.12) 0%, rgba(11, 29, 57, 0.04) 50%, transparent 70%);
     border-radius: 50%;
-    animation: pulseGlow 8s ease-in-out infinite;
-    box-shadow: 0 0 100px rgba(0, 184, 169, 0.1);
+    animation: pulseGlow 10s ease-in-out infinite;
+    box-shadow: 0 0 80px rgba(0, 184, 169, 0.08);
     z-index: 1;
+    will-change: transform, opacity;
+    transform: translateZ(0);
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        linear-gradient(90deg, rgba(11, 29, 57, 0.08) 2px, transparent 2px),
-        linear-gradient(rgba(11, 29, 57, 0.08) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(0, 184, 169, 0.06) 1px, transparent 1px),
-        linear-gradient(rgba(0, 184, 169, 0.06) 1px, transparent 1px),
-        linear-gradient(45deg, rgba(0, 184, 169, 0.04) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(0, 184, 169, 0.04) 25%, transparent 25%);
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px, 80px 80px, 80px 80px;
-    background-position: -2px -2px, -2px -2px, 0 0, 0 0, 0 0, 40px 40px;
-    opacity: 1;
-    pointer-events: none;
-    box-shadow: inset 0 0 200px rgba(0, 184, 169, 0.05);
-    animation: gridPulse 4s ease-in-out infinite;
-}
 
-/* Individual triangle glows - each triangle blinks independently */
+/* Simplified triangle glows - reduced from 8 to 4 for better performance */
 .hero .triangle-1 {
     position: absolute;
-    top: 10%;
-    left: 15%;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(45deg, rgba(0, 184, 169, 0.8) 50%, transparent 50%);
-    opacity: 0;
-    pointer-events: none;
-    animation: randomBlink1 18s ease-in-out infinite;
-    animation-delay: 0s;
-    z-index: 2;
-}
-
-.hero .triangle-2 {
-    position: absolute;
-    top: 25%;
-    left: 35%;
-    width: 35px;
-    height: 35px;
-    background: linear-gradient(-45deg, rgba(0, 184, 169, 0.7) 50%, transparent 50%);
-    opacity: 0;
-    pointer-events: none;
-    animation: randomBlink2 22s ease-in-out infinite;
-    animation-delay: 3s;
-    z-index: 2;
-}
-
-.hero .triangle-3 {
-    position: absolute;
-    top: 45%;
+    top: 15%;
     left: 20%;
     width: 30px;
     height: 30px;
     background: linear-gradient(45deg, rgba(0, 184, 169, 0.6) 50%, transparent 50%);
     opacity: 0;
     pointer-events: none;
-    animation: randomBlink3 25s ease-in-out infinite;
-    animation-delay: 7s;
+    animation: simpleBlink 8s ease-in-out infinite;
+    animation-delay: 0s;
+    z-index: 2;
+}
+
+.hero .triangle-2 {
+    position: absolute;
+    top: 40%;
+    left: 60%;
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(-45deg, rgba(0, 184, 169, 0.5) 50%, transparent 50%);
+    opacity: 0;
+    pointer-events: none;
+    animation: simpleBlink 10s ease-in-out infinite;
+    animation-delay: 2s;
+    z-index: 2;
+}
+
+.hero .triangle-3 {
+    position: absolute;
+    top: 65%;
+    left: 30%;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(45deg, rgba(0, 184, 169, 0.4) 50%, transparent 50%);
+    opacity: 0;
+    pointer-events: none;
+    animation: simpleBlink 12s ease-in-out infinite;
+    animation-delay: 4s;
     z-index: 2;
 }
 
 .hero .triangle-4 {
     position: absolute;
-    top: 60%;
-    left: 45%;
-    width: 38px;
-    height: 38px;
-    background: linear-gradient(-45deg, rgba(0, 184, 169, 0.9) 50%, transparent 50%);
-    opacity: 0;
-    pointer-events: none;
-    animation: randomBlink4 20s ease-in-out infinite;
-    animation-delay: 12s;
-    z-index: 2;
-}
-
-.hero .triangle-5 {
-    position: absolute;
-    top: 30%;
-    left: 60%;
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(45deg, rgba(0, 184, 169, 0.5) 50%, transparent 50%);
-    opacity: 0;
-    pointer-events: none;
-    animation: randomBlink5 28s ease-in-out infinite;
-    animation-delay: 5s;
-    z-index: 2;
-}
-
-.hero .triangle-6 {
-    position: absolute;
-    top: 70%;
-    left: 25%;
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(-45deg, rgba(0, 184, 169, 0.8) 50%, transparent 50%);
-    opacity: 0;
-    pointer-events: none;
-    animation: randomBlink6 24s ease-in-out infinite;
-    animation-delay: 15s;
-    z-index: 2;
-}
-
-.hero .triangle-7 {
-    position: absolute;
-    top: 15%;
-    left: 70%;
-    width: 28px;
-    height: 28px;
-    background: linear-gradient(45deg, rgba(0, 184, 169, 0.7) 50%, transparent 50%);
-    opacity: 0;
-    pointer-events: none;
-    animation: randomBlink7 26s ease-in-out infinite;
-    animation-delay: 9s;
-    z-index: 2;
-}
-
-.hero .triangle-8 {
-    position: absolute;
-    top: 55%;
+    top: 25%;
     left: 75%;
-    width: 34px;
-    height: 34px;
-    background: linear-gradient(-45deg, rgba(0, 184, 169, 0.6) 50%, transparent 50%);
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(-45deg, rgba(0, 184, 169, 0.5) 50%, transparent 50%);
     opacity: 0;
     pointer-events: none;
-    animation: randomBlink8 30s ease-in-out infinite;
-    animation-delay: 18s;
+    animation: simpleBlink 9s ease-in-out infinite;
+    animation-delay: 6s;
     z-index: 2;
 }
 
@@ -754,12 +679,14 @@ body {
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    transition: all var(--transition-medium);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium);
     border: 2px solid transparent;
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
+    transform: translate3d(0, -5px, 0);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border-color: var(--teal-accent);
 }
@@ -1228,7 +1155,9 @@ body {
 }
 
 .visual-card {
-    animation: float 3s ease-in-out infinite;
+    animation: float 4s ease-in-out infinite;
+    will-change: transform;
+    transform: translateZ(0); /* Hardware acceleration */
 }
 
 .card-1 {
@@ -1236,15 +1165,15 @@ body {
 }
 
 .card-2 {
-    animation-delay: 0.5s;
-}
-
-.card-3 {
     animation-delay: 1s;
 }
 
+.card-3 {
+    animation-delay: 2s;
+}
+
 .card-4 {
-    animation-delay: 1.5s;
+    animation-delay: 3s;
 }
 
 @keyframes pulseGlow {
@@ -1260,44 +1189,35 @@ body {
     }
 }
 
-/* Additional floating glow elements */
+/* Optimized floating glow elements - reduced from 3 to 2 */
 .hero .glow-1 {
     position: absolute;
     top: 20%;
     left: 10%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(0, 184, 169, 0.08) 0%, transparent 60%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(0, 184, 169, 0.06) 0%, transparent 60%);
     border-radius: 50%;
-    animation: floatGlow 12s ease-in-out infinite;
+    animation: floatGlow 15s ease-in-out infinite;
     pointer-events: none;
     z-index: 1;
+    will-change: transform, opacity;
+    transform: translateZ(0);
 }
 
 .hero .glow-2 {
     position: absolute;
     bottom: 30%;
     right: 15%;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(11, 29, 57, 0.1) 0%, transparent 70%);
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(11, 29, 57, 0.08) 0%, transparent 70%);
     border-radius: 50%;
-    animation: floatGlow 10s ease-in-out infinite reverse;
+    animation: floatGlow 12s ease-in-out infinite reverse;
     pointer-events: none;
     z-index: 1;
-}
-
-.hero .glow-3 {
-    position: absolute;
-    top: 60%;
-    left: 70%;
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, rgba(0, 184, 169, 0.06) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: floatGlow 14s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 1;
+    will-change: transform, opacity;
+    transform: translateZ(0);
 }
 
 @keyframes floatGlow {
@@ -1320,154 +1240,12 @@ body {
     }
 }
 
-@keyframes randomBlink1 {
-    0%, 92% { opacity: 0; }
-    3%, 4% { opacity: 1; }
-    8%, 9% { opacity: 0; }
-    15%, 16% { opacity: 1; }
-    22%, 23% { opacity: 0; }
-    28%, 29% { opacity: 1; }
-    35%, 36% { opacity: 0; }
-    42%, 43% { opacity: 1; }
-    48%, 49% { opacity: 0; }
-    55%, 56% { opacity: 1; }
-    62%, 63% { opacity: 0; }
-    68%, 69% { opacity: 1; }
-    75%, 76% { opacity: 0; }
-    82%, 83% { opacity: 1; }
-    88%, 89% { opacity: 0; }
-}
-
-@keyframes randomBlink2 {
-    0%, 90% { opacity: 0; }
-    2%, 3% { opacity: 1; }
-    7%, 8% { opacity: 0; }
-    12%, 13% { opacity: 1; }
-    18%, 19% { opacity: 0; }
-    24%, 25% { opacity: 1; }
-    30%, 31% { opacity: 0; }
-    36%, 37% { opacity: 1; }
-    42%, 43% { opacity: 0; }
-    48%, 49% { opacity: 1; }
-    54%, 55% { opacity: 0; }
-    60%, 61% { opacity: 1; }
-    66%, 67% { opacity: 0; }
-    72%, 73% { opacity: 1; }
-    78%, 79% { opacity: 0; }
-    84%, 85% { opacity: 1; }
-}
-
-@keyframes randomBlink3 {
-    0%, 88% { opacity: 0; }
-    1%, 2% { opacity: 1; }
-    6%, 7% { opacity: 0; }
-    11%, 12% { opacity: 1; }
-    17%, 18% { opacity: 0; }
-    23%, 24% { opacity: 1; }
-    29%, 30% { opacity: 0; }
-    35%, 36% { opacity: 1; }
-    41%, 42% { opacity: 0; }
-    47%, 48% { opacity: 1; }
-    53%, 54% { opacity: 0; }
-    59%, 60% { opacity: 1; }
-    65%, 66% { opacity: 0; }
-    71%, 72% { opacity: 1; }
-    77%, 78% { opacity: 0; }
-    83%, 84% { opacity: 1; }
-}
-
-@keyframes randomBlink4 {
-    0%, 94% { opacity: 0; }
-    4%, 5% { opacity: 1; }
-    9%, 10% { opacity: 0; }
-    16%, 17% { opacity: 1; }
-    21%, 22% { opacity: 0; }
-    27%, 28% { opacity: 1; }
-    33%, 34% { opacity: 0; }
-    39%, 40% { opacity: 1; }
-    45%, 46% { opacity: 0; }
-    51%, 52% { opacity: 1; }
-    57%, 58% { opacity: 0; }
-    63%, 64% { opacity: 1; }
-    69%, 70% { opacity: 0; }
-    75%, 76% { opacity: 1; }
-    81%, 82% { opacity: 0; }
-    87%, 88% { opacity: 1; }
-}
-
-@keyframes randomBlink5 {
-    0%, 91% { opacity: 0; }
-    2%, 3% { opacity: 1; }
-    8%, 9% { opacity: 0; }
-    14%, 15% { opacity: 1; }
-    20%, 21% { opacity: 0; }
-    26%, 27% { opacity: 1; }
-    32%, 33% { opacity: 0; }
-    38%, 39% { opacity: 1; }
-    44%, 45% { opacity: 0; }
-    50%, 51% { opacity: 1; }
-    56%, 57% { opacity: 0; }
-    62%, 63% { opacity: 1; }
-    68%, 69% { opacity: 0; }
-    74%, 75% { opacity: 1; }
-    80%, 81% { opacity: 0; }
-    86%, 87% { opacity: 1; }
-}
-
-@keyframes randomBlink6 {
-    0%, 89% { opacity: 0; }
-    1%, 2% { opacity: 1; }
-    7%, 8% { opacity: 0; }
-    13%, 14% { opacity: 1; }
-    19%, 20% { opacity: 0; }
-    25%, 26% { opacity: 1; }
-    31%, 32% { opacity: 0; }
-    37%, 38% { opacity: 1; }
-    43%, 44% { opacity: 0; }
-    49%, 50% { opacity: 1; }
-    55%, 56% { opacity: 0; }
-    61%, 62% { opacity: 1; }
-    67%, 68% { opacity: 0; }
-    73%, 74% { opacity: 1; }
-    79%, 80% { opacity: 0; }
-    85%, 86% { opacity: 1; }
-}
-
-@keyframes randomBlink7 {
-    0%, 93% { opacity: 0; }
-    3%, 4% { opacity: 1; }
-    8%, 9% { opacity: 0; }
-    15%, 16% { opacity: 1; }
-    21%, 22% { opacity: 0; }
-    28%, 29% { opacity: 1; }
-    34%, 35% { opacity: 0; }
-    40%, 41% { opacity: 1; }
-    46%, 47% { opacity: 0; }
-    52%, 53% { opacity: 1; }
-    58%, 59% { opacity: 0; }
-    64%, 65% { opacity: 1; }
-    70%, 71% { opacity: 0; }
-    76%, 77% { opacity: 1; }
-    82%, 83% { opacity: 0; }
-    88%, 89% { opacity: 1; }
-}
-
-@keyframes randomBlink8 {
-    0%, 87% { opacity: 0; }
-    1%, 2% { opacity: 1; }
-    6%, 7% { opacity: 0; }
-    12%, 13% { opacity: 1; }
-    18%, 19% { opacity: 0; }
-    24%, 25% { opacity: 1; }
-    30%, 31% { opacity: 0; }
-    36%, 37% { opacity: 1; }
-    42%, 43% { opacity: 0; }
-    48%, 49% { opacity: 1; }
-    54%, 55% { opacity: 0; }
-    60%, 61% { opacity: 1; }
-    66%, 67% { opacity: 0; }
-    72%, 73% { opacity: 1; }
-    78%, 79% { opacity: 0; }
-    84%, 85% { opacity: 1; }
+/* Simplified blink animation for better performance */
+@keyframes simpleBlink {
+    0%, 80% { opacity: 0; }
+    10%, 20% { opacity: 0.8; }
+    30%, 40% { opacity: 0; }
+    50%, 60% { opacity: 0.6; }
+    70% { opacity: 0; }
 }
 

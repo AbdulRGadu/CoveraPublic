@@ -30,43 +30,56 @@ document.addEventListener('click', (e) => {
 });
 
 // ================================
-// Active Navigation Link on Scroll
+// Active Navigation Link on Scroll (Optimized)
 // ================================
 
-function updateActiveLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + 100;
+// Cache DOM elements
+const sections = document.querySelectorAll('section[id]');
+const sectionData = Array.from(sections).map(section => ({
+    element: section,
+    top: section.offsetTop,
+    height: section.offsetHeight,
+    id: section.getAttribute('id')
+}));
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
+function updateActiveLink() {
+    const scrollPosition = window.scrollY + 100;
+    let activeSection = null;
+
+    // Find active section
+    for (const section of sectionData) {
+        if (scrollPosition >= section.top && scrollPosition < section.top + section.height) {
+            activeSection = section.id;
+            break;
         }
-    });
+    }
+
+    // Update active link only if changed
+    if (activeSection) {
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === `#${activeSection}`;
+            link.classList.toggle('active', isActive);
+        });
+    }
 }
 
 // ================================
-// Navbar Scroll Effect
+// Navbar Scroll Effect (Optimized)
 // ================================
 
 let lastScroll = 0;
+let hasShadow = false;
 
 function handleNavbarScroll() {
     const currentScroll = window.scrollY;
+    const shouldHaveShadow = currentScroll > 50;
     
-    // Add shadow on scroll
-    if (currentScroll > 50) {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+    // Only update if shadow state changed
+    if (shouldHaveShadow !== hasShadow) {
+        navbar.style.boxShadow = shouldHaveShadow 
+            ? '0 2px 20px rgba(0, 0, 0, 0.1)' 
+            : '0 2px 20px rgba(0, 0, 0, 0.05)';
+        hasShadow = shouldHaveShadow;
     }
     
     lastScroll = currentScroll;
@@ -92,33 +105,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ================================
-// Scroll Animations (Intersection Observer)
+// Scroll Animations (Optimized Intersection Observer)
 // ================================
 
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -30px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transform = 'translate3d(0, 0, 0)';
+            // Unobserve after animation to improve performance
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe elements for animation
+// Observe elements for animation (reduced complexity)
 function setupScrollAnimations() {
     const animatedElements = document.querySelectorAll(
-        '.service-card, .solution-item, .feature-item, .stat-item, .hero-text, .about-text, .about-image'
+        '.service-card, .solution-item, .feature-item, .stat-item'
     );
     
     animatedElements.forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        el.style.transform = 'translate3d(0, 20px, 0)';
+        el.style.transition = `opacity 0.4s ease ${index * 0.05}s, transform 0.4s ease ${index * 0.05}s`;
+        el.style.willChange = 'opacity, transform';
         observer.observe(el);
     });
 }
@@ -363,12 +379,13 @@ if (heroStats) {
 }
 
 // ================================
-// Page Load Animations
+// Page Load Animations (Optimized)
 // ================================
 
-window.addEventListener('load', () => {
-    // Add loaded class to body
-    document.body.classList.add('loaded');
+let animationsInitialized = false;
+
+function initializeAnimations() {
+    if (animationsInitialized) return;
     
     // Setup scroll animations
     setupScrollAnimations();
@@ -377,40 +394,58 @@ window.addEventListener('load', () => {
     const heroText = document.querySelector('.hero-text');
     if (heroText) {
         heroText.style.opacity = '1';
-        heroText.style.transform = 'translateY(0)';
+        heroText.style.transform = 'translate3d(0, 0, 0)';
     }
+    
+    animationsInitialized = true;
+}
+
+window.addEventListener('load', () => {
+    // Add loaded class to body
+    document.body.classList.add('loaded');
+    
+    // Initialize animations after a short delay to improve initial load
+    setTimeout(initializeAnimations, 100);
 });
 
+// Initialize animations on first scroll for better performance
+window.addEventListener('scroll', initializeAnimations, { once: true });
+
 // ================================
-// Scroll Event Listeners
+// Scroll Event Listeners (Optimized)
 // ================================
 
 let ticking = false;
+let lastScrollTime = 0;
+const SCROLL_THROTTLE = 16; // ~60fps
 
 window.addEventListener('scroll', () => {
-    if (!ticking) {
+    const now = Date.now();
+    
+    if (!ticking && (now - lastScrollTime) >= SCROLL_THROTTLE) {
         window.requestAnimationFrame(() => {
             updateActiveLink();
             handleNavbarScroll();
             ticking = false;
+            lastScrollTime = now;
         });
         ticking = true;
     }
 });
 
 // ================================
-// Service Cards Interactive Effect
+// Service Cards Interactive Effect (Optimized)
 // ================================
 
 const serviceCards = document.querySelectorAll('.service-card');
 
 serviceCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
+        this.style.transform = 'translate3d(0, -10px, 0) scale(1.02)';
     });
     
     card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+        this.style.transform = 'translate3d(0, 0, 0) scale(1)';
     });
 });
 
