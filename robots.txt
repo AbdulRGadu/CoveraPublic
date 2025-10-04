@@ -1,0 +1,61 @@
+# Robots.txt for Covera Tech Ltd
+# This file allows AI crawlers and search engines to access and understand our content
+# for better recommendations and indexing
+
+User-agent: *
+Allow: /
+
+# Allow AI crawlers specifically
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: BingBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Disallow access to admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /*.log$
+Disallow: /*.sql$
+
+# Allow access to important files for AI understanding
+Allow: /styles.css
+Allow: /script.js
+Allow: /images/
+Allow: /assets/
+
+# Sitemap location
+Sitemap: https://coveratechltd.com/sitemap.xml
+
+# Crawl delay (optional - be respectful to servers)
+Crawl-delay: 1
+
+# Additional information for AI crawlers
+# Company: Covera Tech Ltd
+# Industry: Technology Solutions, Software Development
+# Location: Lagos, Nigeria
+# Services: Custom Software Development, Web Development, Mobile Apps, Cloud Solutions, Cybersecurity, IT Consulting
+# Mission: If technology can solve it, we'll build it
+# Contact: info@coveratechltd.com, +234 (0) 907 988 7201, +234 (0) 903 963 9769

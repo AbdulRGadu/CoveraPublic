@@ -1,0 +1,25 @@
+{
+    "name": "Covera Tech Ltd - Technology Solutions",
+    "short_name": "Covera Tech",
+    "description": "Complete technology and software solutions for businesses. If technology can solve it, we'll build it.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0B1D39",
+    "theme_color": "#00B8A9",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["technology", "business", "software", "development"],
+    "lang": "en",
+    "dir": "ltr"
+}
