@@ -1,61 +1,245 @@
-# Robots.txt for Covera Tech Ltd
-# This file allows AI crawlers and search engines to access and understand our content
-# for better recommendations and indexing
+# Robots.txt for Covera Tech Ltd - Premier Technology Solutions Provider
+# Optimized for maximum search engine visibility and AI crawler compatibility
+# Last Updated: October 9, 2025
 
+# ============================================
+# DEFAULT CRAWLING RULES - ALL SEARCH ENGINES
+# ============================================
 User-agent: *
 Allow: /
+Crawl-delay: 0.5
 
-# Allow AI crawlers specifically
+# ============================================
+# MAJOR SEARCH ENGINE BOTS
+# ============================================
+
+# Google Search Bot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+Crawl-delay: 0
+
+# Google Mobile Bot
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Bing Search Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.5
+
+# Bing Preview Bot
+User-agent: BingPreview
+Allow: /
+
+# Yahoo Search Bot
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo Bot
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex Bot
+User-agent: Yandex
+Allow: /
+
+# Baidu Bot
+User-agent: Baiduspider
+Allow: /
+
+# ============================================
+# AI CRAWLERS & LLM TRAINING BOTS
+# ============================================
+
+# OpenAI GPT Bot
 User-agent: GPTBot
 Allow: /
 
+# ChatGPT User Agent
 User-agent: ChatGPT-User
 Allow: /
 
+# Common Crawl (used by many AI systems)
 User-agent: CCBot
 Allow: /
 
+# Anthropic Claude Bot
 User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+# Perplexity AI Bot
 User-agent: PerplexityBot
 Allow: /
 
+# You.com Bot
 User-agent: YouBot
 Allow: /
 
-User-agent: BingBot
+# Meta AI Bot
+User-agent: FacebookBot
 Allow: /
 
-User-agent: Googlebot
+User-agent: Meta-ExternalAgent
 Allow: /
 
-# Disallow access to admin or private areas (if any)
+# Cohere AI Bot
+User-agent: cohere-ai
+Allow: /
+
+# ============================================
+# SOCIAL MEDIA CRAWLERS
+# ============================================
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+
+# Twitter Bot
+User-agent: Twitterbot
+Allow: /
+
+# Facebook Bot (for link previews)
+User-agent: facebookexternalhit
+Allow: /
+
+# WhatsApp Bot (for link previews)
+User-agent: WhatsApp
+Allow: /
+
+# Telegram Bot
+User-agent: TelegramBot
+Allow: /
+
+# ============================================
+# DISALLOWED PATHS (Security & Privacy)
+# ============================================
+
+# Block access to admin areas (if they exist in future)
 Disallow: /admin/
+Disallow: /administrator/
+Disallow: /wp-admin/
 Disallow: /private/
+Disallow: /internal/
+
+# Block access to temp and backup files
 Disallow: /temp/
+Disallow: /tmp/
+Disallow: /backup/
+Disallow: /*.bak$
 Disallow: /*.log$
 Disallow: /*.sql$
+Disallow: /*.sql.gz$
+Disallow: /*.tar$
+Disallow: /*.tar.gz$
+Disallow: /*.zip$
 
-# Allow access to important files for AI understanding
+# Block access to system files
+Disallow: /.git/
+Disallow: /.svn/
+Disallow: /.htaccess
+Disallow: /.htpasswd
+Disallow: /web.config
+Disallow: /.env
+Disallow: /.DS_Store
+
+# Block search and filter parameters to avoid duplicate content
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*search=
+Disallow: /*?*s=
+Disallow: /*?*q=
+
+# ============================================
+# EXPLICITLY ALLOWED RESOURCES
+# ============================================
+
+# Allow crawling of CSS for better rendering understanding
 Allow: /styles.css
+Allow: /*.css$
+
+# Allow crawling of JavaScript for SPA understanding
 Allow: /script.js
+Allow: /*.js$
+
+# Allow crawling of images for image search
 Allow: /images/
 Allow: /assets/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
 
-# Sitemap location
+# Allow crawling of fonts
+Allow: /fonts/
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+Allow: /*.eot$
+
+# Allow crawling of documents
+Allow: /*.pdf$
+Allow: /*.doc$
+Allow: /*.docx$
+
+# ============================================
+# SITEMAP LOCATION
+# ============================================
+
 Sitemap: https://coveratechltd.com/sitemap.xml
 
-# Crawl delay (optional - be respectful to servers)
-Crawl-delay: 1
+# ============================================
+# COMPANY METADATA FOR AI UNDERSTANDING
+# ============================================
 
-# Additional information for AI crawlers
-# Company: Covera Tech Ltd
-# Industry: Technology Solutions, Software Development
+# Company Name: Covera Tech Ltd
+# Legal Name: Covera Tech Limited
+# Industry: Technology Solutions, Software Development, IT Services
+# Specializations: Web Development, Mobile App Development, Cloud Computing, AI/ML, Cybersecurity, Digital Marketing, IT Consulting
 # Location: Lagos, Nigeria
-# Services: Custom Software Development, Web Development, Mobile Apps, Cloud Solutions, Cybersecurity, IT Consulting
-# Mission: If technology can solve it, we'll build it
-# Contact: info@coveratechltd.com, +234 (0) 907 988 7201, +234 (0) 903 963 9769
+# Service Areas: Nigeria, Africa, Global
+# Founded: 2018
+# Languages: English
+# Business Type: B2B, B2C, Enterprise
+# Target Market: Startups, SMEs, Enterprises
+# Key Services: Custom Software Development, Digital Transformation, Cloud Migration, AI Integration, Cybersecurity Solutions
+# Contact Email: coveraltd@gmail.com
+# Contact Phone: +234 907 988 7201
+# Website: https://coveratechltd.com
+# Social Media: Instagram @covera_tech
+# Mission: Transform businesses through innovative technology solutions
+# Vision: Be the leading technology solutions provider in Africa
+
+# ============================================
+# CRAWL OPTIMIZATION SETTINGS
+# ============================================
+
+# Request-rate: 1/1 (1 page per second - optimal for fast crawling)
+# Visit-time: 0900-1800 (9 AM - 6 PM WAT - business hours)
+# Preferred-encoding: gzip, deflate
+
+# ============================================
+# ADDITIONAL NOTES
+# ============================================
+
+# This robots.txt file is optimized for:
+# 1. Maximum search engine visibility
+# 2. AI crawler compatibility for LLM training and recommendations
+# 3. Social media link preview optimization
+# 4. Security and privacy protection
+# 5. Duplicate content prevention
+# 6. Image and multimedia search optimization
+# 7. Fast and efficient crawling
+
+# For questions or crawling issues, contact: coveraltd@gmail.com
+# Last reviewed: October 9, 2025
