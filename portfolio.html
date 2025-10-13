@@ -50,6 +50,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
     <!-- JSON-LD Structured Data for Portfolio -->
     <script type="application/ld+json">
     {
@@ -233,6 +236,22 @@
             padding: 10px 24px;
             border-radius: 50px;
             opacity: 1 !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
         }
 
         /* Hero */
@@ -584,7 +603,43 @@
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                text-align: center;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                padding: 40px 0;
+                gap: 0;
+                z-index: 999;
+            }
+
+            .nav-links li {
+                width: 100%;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
             }
 
             .portfolio-grid {
@@ -616,13 +671,18 @@
                 <img src="covera_logo_black.png" alt="Covera Tech Logo" style="height: 32px; width: auto; vertical-align: middle;">
                 Covera<span class="logo-accent">Tech</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="portfolio.html" class="active">Portfolio</a></li>
                 <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
             </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -870,18 +930,10 @@
             });
         });
 
-        // Intersection Observer
-        const fadeElements = document.querySelectorAll('.fade-in');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        fadeElements.forEach(el => observer.observe(el));
     </script>
+    
+    <!-- External JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>
 
