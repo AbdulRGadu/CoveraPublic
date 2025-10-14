@@ -1,6 +1,6 @@
-# Robots.txt for Covera Tech Ltd - Premier Technology Solutions Provider
-# Optimized for maximum search engine visibility and AI crawler compatibility
-# Last Updated: October 9, 2025
+# Robots.txt for Covera Tech Ltd
+# Optimized for search engine visibility and crawler compatibility
+# Last Updated: October 14, 2025
 
 # ============================================
 # DEFAULT CRAWLING RULES - ALL SEARCH ENGINES
@@ -119,10 +119,10 @@ User-agent: TelegramBot
 Allow: /
 
 # ============================================
-# DISALLOWED PATHS (Security & Privacy)
+# DISALLOWED PATHS
 # ============================================
 
-# Block access to admin areas (if they exist in future)
+# Block access to admin areas
 Disallow: /admin/
 Disallow: /administrator/
 Disallow: /wp-admin/
@@ -158,18 +158,18 @@ Disallow: /*?*s=
 Disallow: /*?*q=
 
 # ============================================
-# EXPLICITLY ALLOWED RESOURCES
+# ALLOWED RESOURCES
 # ============================================
 
-# Allow crawling of CSS for better rendering understanding
+# Allow crawling of CSS
 Allow: /styles.css
 Allow: /*.css$
 
-# Allow crawling of JavaScript for SPA understanding
+# Allow crawling of JavaScript
 Allow: /script.js
 Allow: /*.js$
 
-# Allow crawling of images for image search
+# Allow crawling of images
 Allow: /images/
 Allow: /assets/
 Allow: /*.png$
@@ -197,49 +197,3 @@ Allow: /*.docx$
 # ============================================
 
 Sitemap: https://coveratechltd.com/sitemap.xml
-
-# ============================================
-# COMPANY METADATA FOR AI UNDERSTANDING
-# ============================================
-
-# Company Name: Covera Tech Ltd
-# Legal Name: Covera Tech Limited
-# Industry: Technology Solutions, Software Development, IT Services
-# Specializations: Web Development, Mobile App Development, Cloud Computing, AI/ML, Cybersecurity, Digital Marketing, IT Consulting
-# Location: Lagos, Nigeria
-# Service Areas: Nigeria, Africa, Global
-# Founded: 2018
-# Languages: English
-# Business Type: B2B, B2C, Enterprise
-# Target Market: Startups, SMEs, Enterprises
-# Key Services: Custom Software Development, Digital Transformation, Cloud Migration, AI Integration, Cybersecurity Solutions
-# Contact Email: coveraltd@gmail.com
-# Contact Phone: +234 907 988 7201
-# Website: https://coveratechltd.com
-# Social Media: Instagram @covera_tech
-# Mission: Transform businesses through innovative technology solutions
-# Vision: Be the leading technology solutions provider in Africa
-
-# ============================================
-# CRAWL OPTIMIZATION SETTINGS
-# ============================================
-
-# Request-rate: 1/1 (1 page per second - optimal for fast crawling)
-# Visit-time: 0900-1800 (9 AM - 6 PM WAT - business hours)
-# Preferred-encoding: gzip, deflate
-
-# ============================================
-# ADDITIONAL NOTES
-# ============================================
-
-# This robots.txt file is optimized for:
-# 1. Maximum search engine visibility
-# 2. AI crawler compatibility for LLM training and recommendations
-# 3. Social media link preview optimization
-# 4. Security and privacy protection
-# 5. Duplicate content prevention
-# 6. Image and multimedia search optimization
-# 7. Fast and efficient crawling
-
-# For questions or crawling issues, contact: coveraltd@gmail.com
-# Last reviewed: October 9, 2025
