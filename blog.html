@@ -1148,6 +1148,17 @@
             }
 
         /* Responsive Design */
+        @media (max-width: 1400px) {
+            .blog-nav-container {
+                left: 20px;
+            }
+
+            .blog-main-content {
+                margin-left: 0;
+                margin-right: 20px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .bento-large,
             .bento-medium,
@@ -1158,6 +1169,30 @@
             .footer-content {
                 grid-template-columns: 1fr 1fr;
                 gap: 40px;
+            }
+
+            .blog-nav-container {
+                top: 75px;
+                left: 20px;
+            }
+
+            .blog-nav-button {
+                min-width: 140px;
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+
+            .blog-nav-dropdown {
+                min-width: 280px;
+            }
+
+            .blog-main-content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .scroll-to-top {
+                bottom: 24px;
             }
         }
 
@@ -1230,6 +1265,66 @@
 
             .bento-item {
                 padding: 32px;
+            }
+
+            /* Mobile-specific blog styles */
+            .blog-nav-container {
+                top: 75px;
+                left: 20px;
+                right: 20px;
+                position: fixed;
+            }
+
+            .blog-nav-button {
+                width: 100%;
+                justify-content: center;
+                min-width: auto;
+            }
+
+            .blog-nav-dropdown {
+                left: 0;
+                right: 0;
+                min-width: auto;
+                width: 100%;
+            }
+
+            .article-header {
+                padding: 24px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .article-toggle {
+                align-self: flex-end;
+                margin-top: -40px;
+            }
+
+            .article-body-inner {
+                padding: 0 20px 24px 20px;
+            }
+
+            .article-summary {
+                font-size: 15px;
+            }
+
+            .bento-section {
+                padding: 60px 20px !important;
+            }
+
+            /* Mobile scroll to top button */
+            .scroll-to-top {
+                width: 46px;
+                height: 46px;
+                bottom: 24px;
+                right: 20px;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .blog-nav-container {
+                left: 16px;
+                right: 16px;
             }
         }
 
@@ -1308,6 +1403,278 @@
             color: var(--text-secondary);
         }
 
+        /* Blog Navigation Dropdown */
+        .blog-nav-container {
+            position: fixed;
+            top: 85px;
+            left: 40px;
+            z-index: 999;
+        }
+
+        .blog-nav-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            min-width: 160px;
+        }
+
+        .blog-nav-button:hover {
+            background: #f8f9fa;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-button-icon {
+            font-size: 20px;
+        }
+
+        .nav-button-text {
+            flex: 1;
+        }
+
+        .nav-button-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-nav-button.active .nav-button-arrow {
+            transform: rotate(180deg);
+        }
+
+        .blog-nav-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 998;
+            margin-top: 8px;
+            min-width: 320px;
+        }
+
+        .blog-nav-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .dropdown-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .dropdown-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-close:hover {
+            background: #f0f0f0;
+            color: var(--text-primary);
+        }
+
+        .dropdown-content {
+            padding: 8px;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), rgba(6, 182, 212, 0.05));
+            border-color: rgba(0, 102, 255, 0.2);
+            transform: translateX(4px);
+        }
+
+        .dropdown-item.active {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(6, 182, 212, 0.1));
+            border-color: rgba(0, 102, 255, 0.3);
+        }
+
+        .item-icon {
+            font-size: 24px;
+            min-width: 32px;
+        }
+
+        .item-content h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: var(--text-primary);
+        }
+
+        .item-content p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Collapsible Article Styles */
+        .article-collapsible {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .article-collapsible:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 102, 255, 0.3);
+        }
+
+        .article-header {
+            padding: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .article-header:hover {
+            background: #fafafa;
+        }
+
+        .article-header-content {
+            flex: 1;
+        }
+
+        .article-toggle {
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .article-collapsible.expanded .article-toggle {
+            transform: rotate(45deg);
+            background: var(--text-secondary);
+        }
+
+        .article-summary {
+            margin-top: 16px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .article-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .article-collapsible.expanded .article-body {
+            max-height: 15000px;
+        }
+
+        .article-body-inner {
+            padding: 0 32px 32px 32px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Blog Content Layout */
+        .blog-content-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .blog-main-content {
+            flex: 1;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.3);
+            z-index: 999;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 30px rgba(0, 102, 255, 0.4);
+        }
+
         /* Loading Animation */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -1349,58 +1716,350 @@
         </div>
     </nav>
 
-    <!-- Featured Article Section -->
-    <section class="bento-section" id="featured" style="padding-top: 160px;">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-tag">Featured</div>
-                <h2 class="section-title">Editor's Picks</h2>
-                <p class="section-description">Deep dive into the most impactful technologies shaping the future of software development.</p>
+    <!-- Hero Section for Blog -->
+    <section class="hero" style="min-height: 60vh; padding-top: 140px; padding-bottom: 60px;">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="gradient-blob blob-3"></div>
+        <div class="grid-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="badge-dot"></div>
+                <span>Tech Insights & Tutorials</span>
             </div>
-            <div class="bento-grid">
-                <div class="bento-item bento-large reveal">
-                    <div class="bento-icon">🤖</div>
-                    <h3>Understanding Large Language Models: Architecture and Applications</h3>
-                    <p>Explore the inner workings of transformer-based models like GPT-4 and Claude. Learn how attention mechanisms, tokenization, and neural networks combine to create AI systems capable of understanding and generating human-like text. This comprehensive guide covers practical applications from chatbots to code generation.</p>
-                    <ul class="bento-feature-list">
-                        <li><span class="check-icon">✓</span> Transformer architecture explained</li>
-                        <li><span class="check-icon">✓</span> Fine-tuning and prompt engineering</li>
-                        <li><span class="check-icon">✓</span> Real-world implementation strategies</li>
-                        <li><span class="check-icon">✓</span> 15 min read • AI & Machine Learning</li>
+            <h1>Covera Tech <span class="gradient-text">Blog</span></h1>
+            <p>Expert insights on AI, cloud computing, cybersecurity, and modern software development. Learn from in-depth guides and practical tutorials.</p>
+        </div>
+    </section>
+
+    <!-- Blog Navigation Dropdown -->
+    <div class="blog-nav-container">
+        <button class="blog-nav-button" id="blogNavButton">
+            <span class="nav-button-icon">📚</span>
+            <span class="nav-button-text">Articles</span>
+            <span class="nav-button-arrow">▼</span>
+        </button>
+        <div class="blog-nav-dropdown" id="blogNavDropdown">
+            <div class="dropdown-header">
+                <h3>📚 Choose an Article</h3>
+                <button class="dropdown-close" id="dropdownClose">✕</button>
+            </div>
+            <div class="dropdown-content">
+                <a href="#article-llm" class="dropdown-item" data-article="article-llm">
+                    <span class="item-icon">🤖</span>
+                    <div class="item-content">
+                        <h4>Large Language Models</h4>
+                        <p>Understanding AI Architecture</p>
+                    </div>
+                </a>
+                <a href="#article-serverless" class="dropdown-item" data-article="article-serverless">
+                    <span class="item-icon">☁️</span>
+                    <div class="item-content">
+                        <h4>Serverless Architecture</h4>
+                        <p>Complete Guide for Modern Apps</p>
+                    </div>
+                </a>
+                <a href="#article-zerotrust" class="dropdown-item" data-article="article-zerotrust">
+                    <span class="item-icon">🔐</span>
+                    <div class="item-content">
+                        <h4>Zero Trust Security</h4>
+                        <p>Protecting Modern Applications</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">↑</button>
+
+    <!-- Main Blog Content Section -->
+    <section class="bento-section" style="padding-top: 80px; padding-bottom: 100px;">
+        <div class="container">
+            <div class="blog-main-content">
+            
+            <!-- Article 1: LLMs -->
+            <article class="article-collapsible reveal" id="article-llm">
+                <div class="article-header" onclick="toggleArticle('article-llm')">
+                    <div class="article-header-content">
+                        <div style="display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(6, 182, 212, 0.1)); border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">AI & Machine Learning</div>
+                        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4vw, 38px); font-weight: 800; margin-bottom: 16px; letter-spacing: -1.5px; line-height: 1.2;">Understanding Large Language Models: Architecture and Applications</h2>
+                        <div style="display: flex; gap: 20px; color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">
+                            <span>📅 October 15, 2025</span>
+                            <span>⏱️ 15 min read</span>
+                            <span>✍️ Covera Tech Team</span>
+            </div>
+                        <p class="article-summary">Large Language Models (LLMs) have revolutionized how we interact with AI. From ChatGPT to Claude, these powerful systems are reshaping industries and enabling capabilities that seemed impossible just a few years ago. Click to read the full article.</p>
+                    </div>
+                    <div class="article-toggle">+</div>
+                </div>
+                <div class="article-body">
+                    <div class="article-body-inner">
+                <div style="line-height: 1.8; font-size: 17px; color: var(--text-primary); padding-top: 24px;">
+                    <p style="margin-bottom: 24px; font-size: 20px; font-weight: 500; color: var(--text-secondary);">Large Language Models (LLMs) have revolutionized how we interact with AI. From ChatGPT to Claude, these powerful systems are reshaping industries and enabling capabilities that seemed impossible just a few years ago.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">What Are Large Language Models?</h3>
+                    <p style="margin-bottom: 24px;">Large Language Models are neural networks trained on massive amounts of text data to understand and generate human-like language. These models, built on the transformer architecture, contain billions of parameters that allow them to capture complex patterns in language, context, and reasoning.</p>
+                    <p style="margin-bottom: 24px;">The breakthrough came with the introduction of the attention mechanism in 2017, which allows models to weigh the importance of different words in a sentence relative to each other. This innovation enabled AI systems to understand context at a level never before possible.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">The Transformer Architecture Explained</h3>
+                    <p style="margin-bottom: 24px;">At the heart of every LLM is the transformer architecture. Unlike traditional sequential models, transformers process entire sequences simultaneously using self-attention mechanisms. Here's a simplified breakdown:</p>
+                    
+                    <div style="background: #f8f9fa; border-left: 4px solid var(--primary); padding: 24px; margin: 32px 0; border-radius: 8px;">
+                        <h4 style="font-weight: 700; margin-bottom: 16px; font-size: 18px;">Key Components:</h4>
+                        <ul style="margin-left: 24px; line-height: 2;">
+                            <li><strong>Tokenization:</strong> Breaking text into smaller units (tokens) that the model can process</li>
+                            <li><strong>Embeddings:</strong> Converting tokens into numerical vectors that capture semantic meaning</li>
+                            <li><strong>Attention Layers:</strong> Determining which parts of the input are most relevant to each other</li>
+                            <li><strong>Feed-Forward Networks:</strong> Processing the attended information through neural layers</li>
+                            <li><strong>Output Layer:</strong> Generating predictions for the next token in sequence</li>
                 </ul>
             </div>
-                <div class="bento-item bento-medium reveal">
-                    <div class="bento-icon">☁️</div>
-                    <h3>Serverless Architecture: A Complete Guide</h3>
-                    <p>Discover how serverless computing with AWS Lambda, Azure Functions, and Google Cloud Functions can reduce costs and improve scalability. Learn best practices for building event-driven applications.</p>
-                    <ul class="bento-feature-list">
-                        <li><span class="check-icon">✓</span> 12 min read • Cloud Computing</li>
+
+                    <p style="margin-bottom: 24px;">The attention mechanism computes relationships between all tokens in parallel, making it highly efficient for capturing long-range dependencies. This is crucial for understanding context across lengthy documents or conversations.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Training Large Language Models</h3>
+                    <p style="margin-bottom: 24px;">Training an LLM involves two main phases:</p>
+                    
+                    <p style="margin-bottom: 16px;"><strong style="color: var(--primary);">1. Pre-training:</strong> The model learns from vast amounts of unlabeled text data. During this phase, it learns grammar, facts, reasoning abilities, and some world knowledge. This process requires enormous computational resources—GPT-3, for example, was trained on 45TB of text data.</p>
+                    
+                    <p style="margin-bottom: 24px;"><strong style="color: var(--primary);">2. Fine-tuning:</strong> The pre-trained model is refined on specific tasks or domains. This can include instruction following, conversation, code generation, or domain-specific knowledge. Techniques like Reinforcement Learning from Human Feedback (RLHF) help align the model with human preferences.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Practical Applications</h3>
+                    <p style="margin-bottom: 24px;">LLMs are transforming numerous industries:</p>
+                    
+                    <div style="background: white; border: 1px solid var(--border-light); padding: 28px; margin: 32px 0; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <p style="margin-bottom: 16px;"><strong>💬 Conversational AI:</strong> Chatbots and virtual assistants that understand context and provide helpful responses</p>
+                        <p style="margin-bottom: 16px;"><strong>💻 Code Generation:</strong> Tools like GitHub Copilot that assist developers by writing code from natural language descriptions</p>
+                        <p style="margin-bottom: 16px;"><strong>📝 Content Creation:</strong> Automated writing for marketing, journalism, and creative projects</p>
+                        <p style="margin-bottom: 16px;"><strong>🔍 Information Retrieval:</strong> Advanced search systems that understand query intent and provide accurate answers</p>
+                        <p style="margin-bottom: 0;"><strong>🌐 Translation:</strong> Breaking down language barriers with accurate, context-aware translations</p>
+                    </div>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Prompt Engineering: Getting the Best Results</h3>
+                    <p style="margin-bottom: 24px;">To effectively use LLMs, understanding prompt engineering is essential. The way you structure your prompts dramatically affects the output quality:</p>
+                    
+                    <div style="background: #0a0a0a; color: #e5e5e5; padding: 24px; border-radius: 8px; margin: 32px 0; font-family: 'Courier New', monospace; font-size: 15px; overflow-x: auto;">
+                        <div style="color: #06b6d4; margin-bottom: 8px;">// Bad Prompt Example:</div>
+                        <div style="margin-bottom: 24px;">"Write code"</div>
+                        
+                        <div style="color: #06b6d4; margin-bottom: 8px;">// Good Prompt Example:</div>
+                        <div>"Write a Python function that takes a list of integers and returns <br/>the second largest unique number. Include error handling for edge <br/>cases like empty lists or lists with fewer than two elements. <br/>Add docstrings and type hints."</div>
+                    </div>
+
+                    <p style="margin-bottom: 24px;">Effective prompts are specific, provide context, and clearly state the desired format and constraints. Techniques like few-shot learning (providing examples) and chain-of-thought prompting (asking the model to explain its reasoning) can significantly improve results.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Challenges and Limitations</h3>
+                    <p style="margin-bottom: 24px;">Despite their impressive capabilities, LLMs face several challenges:</p>
+                    <ul style="margin-left: 24px; margin-bottom: 24px; line-height: 2;">
+                        <li><strong>Hallucinations:</strong> Models can generate plausible-sounding but incorrect information</li>
+                        <li><strong>Bias:</strong> Training data may contain biases that the model learns and perpetuates</li>
+                        <li><strong>Context Limits:</strong> Most models have a maximum context window (though this is expanding)</li>
+                        <li><strong>Cost:</strong> Running large models requires significant computational resources</li>
+                        <li><strong>Interpretability:</strong> Understanding why a model made a specific decision remains challenging</li>
                     </ul>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">The Future of LLMs</h3>
+                    <p style="margin-bottom: 24px;">The field is rapidly evolving. Current research focuses on:</p>
+                    <p style="margin-bottom: 16px;">• <strong>Multimodal Models:</strong> Combining text with images, audio, and video understanding</p>
+                    <p style="margin-bottom: 16px;">• <strong>Efficiency:</strong> Creating smaller models that maintain performance while reducing costs</p>
+                    <p style="margin-bottom: 16px;">• <strong>Specialized Models:</strong> Domain-specific LLMs optimized for fields like medicine, law, or science</p>
+                    <p style="margin-bottom: 24px;">• <strong>Better Reasoning:</strong> Enhancing logical thinking and mathematical capabilities</p>
+
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 32px; border-radius: 12px; margin: 48px 0;">
+                        <h4 style="font-size: 22px; font-weight: 700; margin-bottom: 16px;">Key Takeaways</h4>
+                        <p style="margin-bottom: 12px;">✓ LLMs use transformer architecture with attention mechanisms to understand language</p>
+                        <p style="margin-bottom: 12px;">✓ Training involves massive datasets and computational resources</p>
+                        <p style="margin-bottom: 12px;">✓ Prompt engineering is crucial for getting optimal results</p>
+                        <p style="margin-bottom: 0;">✓ While powerful, LLMs have limitations including hallucinations and bias</p>
         </div>
-                <div class="bento-item bento-small reveal">
-                    <div class="bento-icon">🔐</div>
-                    <h3>Zero Trust Security Model</h3>
-                    <p>Master the principles of Zero Trust architecture and implement robust security strategies for modern applications.</p>
-                    <ul class="bento-feature-list">
-                        <li><span class="check-icon">✓</span> 10 min read • Cybersecurity</li>
+
+                    <p style="margin-bottom: 0; font-size: 18px; font-style: italic; color: var(--text-secondary); padding-top: 24px; border-top: 1px solid var(--border-light);">As LLMs continue to advance, they're becoming essential tools for developers, businesses, and researchers. Understanding their architecture and best practices will be crucial for anyone working in technology.</p>
+                </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 2: Serverless -->
+            <article class="article-collapsible reveal" id="article-serverless">
+                <div class="article-header" onclick="toggleArticle('article-serverless')">
+                    <div class="article-header-content">
+                        <div style="display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(219, 39, 119, 0.1)); border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Cloud Computing</div>
+                        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4vw, 38px); font-weight: 800; margin-bottom: 16px; letter-spacing: -1.5px; line-height: 1.2;">Serverless Architecture: A Complete Guide for Modern Applications</h2>
+                        <div style="display: flex; gap: 20px; color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">
+                            <span>📅 October 12, 2025</span>
+                            <span>⏱️ 12 min read</span>
+                            <span>✍️ Covera Tech Team</span>
+                        </div>
+                        <p class="article-summary">Serverless computing has transformed how we build and deploy applications. By abstracting away server management, it allows developers to focus purely on code while enjoying automatic scaling and pay-per-use pricing. Click to read the full article.</p>
+                    </div>
+                    <div class="article-toggle">+</div>
+                </div>
+                <div class="article-body">
+                    <div class="article-body-inner">
+                <div style="line-height: 1.8; font-size: 17px; color: var(--text-primary); padding-top: 24px;">
+                    <p style="margin-bottom: 24px; font-size: 20px; font-weight: 500; color: var(--text-secondary);">Serverless computing has transformed how we build and deploy applications. By abstracting away server management, it allows developers to focus purely on code while enjoying automatic scaling and pay-per-use pricing.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">What is Serverless Computing?</h3>
+                    <p style="margin-bottom: 24px;">Despite the name, serverless doesn't mean there are no servers—it means you don't have to manage them. Cloud providers handle all infrastructure concerns: provisioning, scaling, maintenance, and monitoring. You simply upload your code and it runs on demand.</p>
+
+                    <div style="background: #f8f9fa; border-left: 4px solid var(--secondary); padding: 24px; margin: 32px 0; border-radius: 8px;">
+                        <h4 style="font-weight: 700; margin-bottom: 16px; font-size: 18px;">Core Characteristics:</h4>
+                        <ul style="margin-left: 24px; line-height: 2;">
+                            <li><strong>Event-Driven:</strong> Functions execute in response to events (HTTP requests, database changes, file uploads)</li>
+                            <li><strong>Auto-Scaling:</strong> Automatically handles anywhere from zero to thousands of concurrent requests</li>
+                            <li><strong>Pay-Per-Use:</strong> You're only charged for actual execution time, not idle server time</li>
+                            <li><strong>Stateless:</strong> Each function execution is independent and doesn't maintain state between invocations</li>
+                            <li><strong>Managed:</strong> No servers to patch, update, or maintain</li>
                     </ul>
     </div>
-                <div class="bento-item bento-small reveal">
-                    <div class="bento-icon">⚡</div>
-                    <h3>React Server Components</h3>
-                    <p>Learn how React Server Components revolutionize web performance with reduced JavaScript bundles and improved SEO.</p>
-                    <ul class="bento-feature-list">
-                        <li><span class="check-icon">✓</span> 8 min read • Web Development</li>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Major Serverless Platforms</h3>
+                    
+                    <div style="background: white; border: 1px solid var(--border-light); padding: 28px; margin: 32px 0; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <p style="margin-bottom: 24px;"><strong style="color: #FF9900;">AWS Lambda:</strong> The pioneer and most feature-rich platform. Supports multiple languages, integrates seamlessly with AWS services, and offers the most mature ecosystem. Best for complex AWS-integrated applications.</p>
+                        
+                        <p style="margin-bottom: 24px;"><strong style="color: #0089D6;">Azure Functions:</strong> Microsoft's serverless offering with excellent .NET support and deep integration with Azure services. Ideal for enterprises already invested in Microsoft technologies.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong style="color: #4285F4;">Google Cloud Functions:</strong> Google's solution with strong machine learning integration and competitive pricing. Great for data processing and AI workloads.</p>
+                    </div>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">When to Use Serverless</h3>
+                    <p style="margin-bottom: 24px;">Serverless architecture shines in specific scenarios:</p>
+                    
+                    <p style="margin-bottom: 16px;"><strong style="color: var(--primary);">✓ Microservices:</strong> Break applications into small, independent functions that can be deployed and scaled individually.</p>
+                    
+                    <p style="margin-bottom: 16px;"><strong style="color: var(--primary);">✓ API Backends:</strong> Build RESTful or GraphQL APIs without managing servers. Perfect for mobile and web applications.</p>
+                    
+                    <p style="margin-bottom: 16px;"><strong style="color: var(--primary);">✓ Data Processing:</strong> Process files, transform data, or handle ETL pipelines triggered by data events.</p>
+                    
+                    <p style="margin-bottom: 16px;"><strong style="color: var(--primary);">✓ Scheduled Tasks:</strong> Run cron jobs and maintenance tasks without keeping a server running 24/7.</p>
+                    
+                    <p style="margin-bottom: 24px;"><strong style="color: var(--primary);">✓ Event-Driven Workflows:</strong> React to events from IoT devices, user actions, or system changes.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Building Your First Serverless Function</h3>
+                    <p style="margin-bottom: 24px;">Let's create a simple AWS Lambda function that processes image uploads:</p>
+
+                    <div style="background: #0a0a0a; color: #e5e5e5; padding: 24px; border-radius: 8px; margin: 32px 0; font-family: 'Courier New', monospace; font-size: 14px; overflow-x: auto;">
+                        <div style="color: #10b981; margin-bottom: 16px;">// Image Processing Lambda Function (Node.js)</div>
+                        <div>const AWS = require('aws-sdk');<br/>const sharp = require('sharp');<br/>const s3 = new AWS.S3();<br/><br/>exports.handler = async (event) => {<br/>&nbsp;&nbsp;// Get uploaded image from S3<br/>&nbsp;&nbsp;const bucket = event.Records[0].s3.bucket.name;<br/>&nbsp;&nbsp;const key = event.Records[0].s3.object.key;<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;const image = await s3.getObject({ Bucket: bucket, Key: key }).promise();<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;// Resize image to thumbnail<br/>&nbsp;&nbsp;const thumbnail = await sharp(image.Body)<br/>&nbsp;&nbsp;&nbsp;&nbsp;.resize(200, 200)<br/>&nbsp;&nbsp;&nbsp;&nbsp;.toBuffer();<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;// Save thumbnail<br/>&nbsp;&nbsp;await s3.putObject({<br/>&nbsp;&nbsp;&nbsp;&nbsp;Bucket: bucket,<br/>&nbsp;&nbsp;&nbsp;&nbsp;Key: `thumbnails/${key}`,<br/>&nbsp;&nbsp;&nbsp;&nbsp;Body: thumbnail<br/>&nbsp;&nbsp;}).promise();<br/>&nbsp;&nbsp;<br/>&nbsp;&nbsp;return { statusCode: 200, body: 'Success' };<br/>};</div>
+                    </div>
+
+                    <p style="margin-bottom: 24px;">This function automatically triggers when an image is uploaded to S3, creates a thumbnail, and saves it—all without managing any servers.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Best Practices</h3>
+                    
+                    <div style="background: #f8f9fa; padding: 28px; margin: 32px 0; border-radius: 12px;">
+                        <p style="margin-bottom: 20px;"><strong>1. Keep Functions Small and Focused:</strong> Each function should do one thing well. This improves maintainability and debugging.</p>
+                        
+                        <p style="margin-bottom: 20px;"><strong>2. Optimize Cold Starts:</strong> Minimize dependencies and use provisioned concurrency for latency-sensitive applications.</p>
+                        
+                        <p style="margin-bottom: 20px;"><strong>3. Handle Errors Gracefully:</strong> Implement retry logic and dead letter queues for failed executions.</p>
+                        
+                        <p style="margin-bottom: 20px;"><strong>4. Monitor and Log:</strong> Use CloudWatch, Application Insights, or Cloud Logging to track function performance.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>5. Secure Your Functions:</strong> Apply principle of least privilege with IAM roles and encrypt sensitive data.</p>
+                    </div>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Cost Optimization</h3>
+                    <p style="margin-bottom: 24px;">While serverless can be cost-effective, it's important to optimize:</p>
+                    <ul style="margin-left: 24px; margin-bottom: 24px; line-height: 2;">
+                        <li>Right-size memory allocation (affects both performance and cost)</li>
+                        <li>Reduce function execution time through code optimization</li>
+                        <li>Use reserved concurrency to control maximum spending</li>
+                        <li>Monitor for unexpected invocations that could indicate issues</li>
+                        <li>Consider traditional hosting for consistently high-traffic applications</li>
                     </ul>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Limitations to Consider</h3>
+                    <p style="margin-bottom: 24px;">Serverless isn't perfect for every use case:</p>
+                    <p style="margin-bottom: 16px;">• <strong>Cold Starts:</strong> Initial function invocations can have higher latency</p>
+                    <p style="margin-bottom: 16px;">• <strong>Execution Time Limits:</strong> Most platforms have maximum execution times (15 minutes for Lambda)</p>
+                    <p style="margin-bottom: 16px;">• <strong>Vendor Lock-in:</strong> Each platform has proprietary APIs and configurations</p>
+                    <p style="margin-bottom: 24px;">• <strong>Debugging Complexity:</strong> Distributed systems can be harder to troubleshoot</p>
+
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 32px; border-radius: 12px; margin: 48px 0;">
+                        <h4 style="font-size: 22px; font-weight: 700; margin-bottom: 16px;">Conclusion</h4>
+                        <p style="margin-bottom: 0;">Serverless architecture represents a paradigm shift in cloud computing. By eliminating server management and offering automatic scaling, it allows teams to build and deploy applications faster than ever. While it's not suitable for every scenario, serverless is an essential tool in the modern developer's toolkit.</p>
                 </div>
-                <div class="bento-item bento-small reveal">
-                    <div class="bento-icon">🔄</div>
-                    <h3>Kubernetes in Production</h3>
-                    <p>Essential patterns for deploying and managing containerized applications at scale with Kubernetes.</p>
-                    <ul class="bento-feature-list">
-                        <li><span class="check-icon">✓</span> 11 min read • DevOps</li>
+                </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3: Zero Trust Security -->
+            <article class="article-collapsible reveal" id="article-zerotrust">
+                <div class="article-header" onclick="toggleArticle('article-zerotrust')">
+                    <div class="article-header-content">
+                        <div style="display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border-radius: 20px; font-size: 12px; font-weight: 700; color: #dc2626; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Cybersecurity</div>
+                        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4vw, 38px); font-weight: 800; margin-bottom: 16px; letter-spacing: -1.5px; line-height: 1.2;">Zero Trust Security Model: Protecting Modern Applications</h2>
+                        <div style="display: flex; gap: 20px; color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">
+                            <span>📅 October 10, 2025</span>
+                            <span>⏱️ 10 min read</span>
+                            <span>✍️ Covera Tech Team</span>
+                        </div>
+                        <p class="article-summary">Traditional security models that trust everything inside a network perimeter are no longer sufficient. Zero Trust architecture assumes no user or system should be trusted by default, regardless of location. Click to read the full article.</p>
+                    </div>
+                    <div class="article-toggle">+</div>
+                </div>
+                <div class="article-body">
+                    <div class="article-body-inner">
+                <div style="line-height: 1.8; font-size: 17px; color: var(--text-primary); padding-top: 24px;">
+                    <p style="margin-bottom: 24px; font-size: 20px; font-weight: 500; color: var(--text-secondary);">Traditional security models that trust everything inside a network perimeter are no longer sufficient. Zero Trust architecture assumes no user or system should be trusted by default, regardless of location.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">The Core Principle: "Never Trust, Always Verify"</h3>
+                    <p style="margin-bottom: 24px;">Zero Trust security operates on a simple but powerful principle: trust no one and verify everything. Every user, device, and application must continuously prove their identity and authorization before accessing resources, regardless of whether they're inside or outside the network.</p>
+
+                    <div style="background: white; border: 1px solid var(--border-light); padding: 28px; margin: 32px 0; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h4 style="font-weight: 700; margin-bottom: 20px; font-size: 20px; color: var(--primary);">Three Foundational Pillars:</h4>
+                        <p style="margin-bottom: 16px;"><strong>1. Identity Verification:</strong> Authenticate every user and device with multi-factor authentication (MFA) and continuous verification.</p>
+                        <p style="margin-bottom: 16px;"><strong>2. Least Privilege Access:</strong> Grant minimum necessary permissions and regularly review access rights.</p>
+                        <p style="margin-bottom: 0;"><strong>3. Micro-Segmentation:</strong> Divide networks into small zones to contain breaches and limit lateral movement.</p>
+                    </div>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Implementing Zero Trust</h3>
+                    <p style="margin-bottom: 24px;">Building a Zero Trust architecture requires a systematic approach:</p>
+
+                    <p style="margin-bottom: 20px;"><strong style="color: #dc2626;">Step 1: Identify Your Protect Surface</strong><br/>Map all sensitive data, assets, applications, and services (DAAS). Unlike the attack surface which is constantly changing, the protect surface is relatively stable and easier to secure.</p>
+
+                    <p style="margin-bottom: 20px;"><strong style="color: #dc2626;">Step 2: Map Transaction Flows</strong><br/>Understand how data moves across your network. Document who needs access to what resources and under which conditions.</p>
+
+                    <p style="margin-bottom: 20px;"><strong style="color: #dc2626;">Step 3: Build Your Zero Trust Architecture</strong><br/>Create micro-perimeters around each protect surface with a Zero Trust policy enforcement point (typically a next-generation firewall or software-defined perimeter).</p>
+
+                    <p style="margin-bottom: 24px;"><strong style="color: #dc2626;">Step 4: Create Zero Trust Policies</strong><br/>Define who can access what resources under specific conditions. Use the Kipling Method: who, what, when, where, why, and how.</p>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Key Technologies</h3>
+                    <div style="background: #f8f9fa; padding: 28px; margin: 32px 0; border-radius: 12px;">
+                        <p style="margin-bottom: 20px;"><strong>🔐 Multi-Factor Authentication (MFA):</strong> Require multiple verification methods beyond passwords—biometrics, hardware tokens, or mobile authenticators.</p>
+                        
+                        <p style="margin-bottom: 20px;"><strong>🎯 Identity and Access Management (IAM):</strong> Centralize user authentication and authorization with role-based or attribute-based access control.</p>
+                        
+                        <p style="margin-bottom: 20px;"><strong>📊 Security Information and Event Management (SIEM):</strong> Aggregate logs and detect suspicious patterns in real-time.</p>
+                        
+                        <p style="margin-bottom: 20px;"><strong>🛡️ Endpoint Detection and Response (EDR):</strong> Monitor and protect individual devices from threats.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>🌐 Software-Defined Perimeters (SDP):</strong> Create dynamic, identity-based perimeters instead of static network boundaries.</p>
+                    </div>
+
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 48px 0 24px; letter-spacing: -0.5px;">Real-World Benefits</h3>
+                    <p style="margin-bottom: 24px;">Organizations implementing Zero Trust experience significant security improvements:</p>
+                    <ul style="margin-left: 24px; margin-bottom: 24px; line-height: 2;">
+                        <li>Reduced breach impact through network segmentation</li>
+                        <li>Better visibility into who's accessing what resources</li>
+                        <li>Improved compliance with regulations like GDPR and HIPAA</li>
+                        <li>Enhanced protection for remote and hybrid workforces</li>
+                        <li>Faster detection and response to security incidents</li>
                     </ul>
+
+                    <div style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; padding: 32px; border-radius: 12px; margin: 48px 0;">
+                        <h4 style="font-size: 22px; font-weight: 700; margin-bottom: 16px;">The Bottom Line</h4>
+                        <p style="margin-bottom: 0;">Zero Trust isn't just a technology—it's a strategic approach to cybersecurity. In today's landscape of sophisticated threats and distributed workforces, assuming breach and verifying every access request is the only way to truly protect your organization's critical assets.</p>
                 </div>
+                </div>
+                    </div>
+                </div>
+            </article>
+
             </div>
         </div>
     </section>
@@ -1825,6 +2484,192 @@
                 el.style.transition = 'none';
             });
         }
+
+        // Blog-specific functionality - Initialize after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle article collapse/expand
+            window.toggleArticle = function(articleId) {
+                const article = document.getElementById(articleId);
+                if (!article) return;
+                
+                const isExpanded = article.classList.contains('expanded');
+                
+                // Close all articles
+                document.querySelectorAll('.article-collapsible').forEach(art => {
+                    art.classList.remove('expanded');
+                });
+                
+                // If this article wasn't expanded, expand it and scroll to it
+                if (!isExpanded) {
+                    article.classList.add('expanded');
+                    
+                    // Smooth scroll to article after a brief delay for animation
+                    setTimeout(() => {
+                        const offsetTop = article.offsetTop - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+                
+                // Update active navigation link
+                updateActiveNavLink(isExpanded ? null : articleId);
+            }
+
+            // Update active navigation link
+            function updateActiveNavLink(articleId) {
+                document.querySelectorAll('.dropdown-item').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                if (articleId) {
+                    const activeLink = document.querySelector(`.dropdown-item[data-article="${articleId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            }
+
+            // Dropdown functionality
+            const blogNavButton = document.getElementById('blogNavButton');
+            const blogNavDropdown = document.getElementById('blogNavDropdown');
+            const dropdownClose = document.getElementById('dropdownClose');
+            
+            if (blogNavButton && blogNavDropdown) {
+                // Toggle dropdown
+                blogNavButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isActive = blogNavDropdown.classList.contains('active');
+                    
+                    if (isActive) {
+                        closeDropdown();
+                    } else {
+                        openDropdown();
+                    }
+                });
+                
+                // Close dropdown
+                function closeDropdown() {
+                    blogNavDropdown.classList.remove('active');
+                    blogNavButton.classList.remove('active');
+                }
+                
+                // Open dropdown
+                function openDropdown() {
+                    blogNavDropdown.classList.add('active');
+                    blogNavButton.classList.add('active');
+                }
+                
+                // Close button
+                if (dropdownClose) {
+                    dropdownClose.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        closeDropdown();
+                    });
+                }
+                
+                // Handle dropdown item clicks
+                document.querySelectorAll('.dropdown-item').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const articleId = link.dataset.article;
+                        const article = document.getElementById(articleId);
+                        
+                        if (article) {
+                            // Close dropdown
+                            closeDropdown();
+                            
+                            // Close all articles first
+                            document.querySelectorAll('.article-collapsible').forEach(art => {
+                                art.classList.remove('expanded');
+                            });
+                            
+                            // Expand clicked article
+                            article.classList.add('expanded');
+                            
+                            // Update navigation
+                            updateActiveNavLink(articleId);
+                            
+                            // Scroll to article
+                            setTimeout(() => {
+                                const offsetTop = article.offsetTop - 100;
+                                window.scrollTo({
+                                    top: offsetTop,
+                                    behavior: 'smooth'
+                                });
+                            }, 100);
+                        }
+                    });
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!blogNavButton.contains(e.target) && !blogNavDropdown.contains(e.target)) {
+                        closeDropdown();
+                    }
+                });
+                
+                // Prevent dropdown clicks from closing it
+                blogNavDropdown.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Highlight active article in navigation while scrolling
+        const observerOptions = {
+            root: null,
+            rootMargin: '-100px 0px -70% 0px',
+            threshold: 0
+        };
+
+        const articleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('expanded')) {
+                    const articleId = entry.target.id;
+                    updateActiveNavLink(articleId);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all articles
+        document.querySelectorAll('.article-collapsible').forEach(article => {
+            articleObserver.observe(article);
+        });
+
+        // Auto-expand first article on page load (optional)
+        // Uncomment the following lines if you want the first article expanded by default
+        /*
+        window.addEventListener('load', () => {
+            const firstArticle = document.querySelector('.article-collapsible');
+            if (firstArticle) {
+                firstArticle.classList.add('expanded');
+                updateActiveNavLink(firstArticle.id);
+            }
+        });
+        */
     </script>
 </body>
 </html>

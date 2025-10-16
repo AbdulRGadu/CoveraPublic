@@ -659,7 +659,7 @@
         .hero-content {
             max-width: 1000px;
             position: relative;
-            z-index: 10;
+            z-index: 20;
         }
 
         .hero-badge {
@@ -1550,11 +1550,14 @@
             }
 
             .hero h1 {
-                margin-bottom: 16px;
+                margin-bottom: 18px;
+                font-size: clamp(42px, 9vw, 92px);
+                letter-spacing: -2px;
             }
 
             .hero p {
-                margin-bottom: 24px;
+                margin-bottom: 28px;
+                font-size: clamp(18px, 3vw, 26px);
             }
 
             .float-card > div:first-child {
@@ -1647,7 +1650,7 @@
                 <span>Trusted by 50+ companies worldwide</span>
             </div>
             -->
-            <h1 itemscope itemtype="https://schema.org/Organization">
+            <h1>
                 Transform Your Business with <span class="gradient-text">Cutting-Edge Technology</span> Solutions
             </h1>
             <p itemprop="description">We transform ambitious ideas into powerful digital products that users love and businesses value.</p>
