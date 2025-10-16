@@ -145,7 +145,7 @@ Performed end-to-end, advanced SEO optimization transforming Covera Tech into an
   "legalName": "Covera Tech Limited",
   "foundingDate": "2018",
   "slogan": "If technology can solve it, we'll build it",
-  "email": "coveraltd@gmail.com",
+  "email": "info@coveratechltd.com",
   "telephone": "+234-907-988-7201",
   "address": {
     "streetAddress": "123 Innovation Drive, Victoria Island",
@@ -544,6 +544,6 @@ The website is now positioned to dominate search results for technology services
 **Prepared by:** Advanced SEO Strategist  
 **Date:** October 9, 2025  
 **Website:** https://coveratechltd.com  
-**Contact:** coveraltd@gmail.com
+**Contact:** info@coveratechltd.com
 
 
