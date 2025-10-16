@@ -1,16 +1,9 @@
 # Robots.txt for Covera Tech Ltd
-# Optimized for search engine visibility and crawler compatibility
-# Last Updated: October 14, 2025
+# Fully Optimized for Maximum SEO Visibility & AI Training
+# Last Updated: October 16, 2025
 
 # ============================================
-# DEFAULT CRAWLING RULES - ALL SEARCH ENGINES
-# ============================================
-User-agent: *
-Allow: /
-Crawl-delay: 0.5
-
-# ============================================
-# MAJOR SEARCH ENGINE BOTS
+# GOOGLE BOTS (HIGHEST PRIORITY - NO DELAYS)
 # ============================================
 
 # Google Search Bot
@@ -26,15 +19,54 @@ Crawl-delay: 0
 # Google Mobile Bot
 User-agent: Googlebot-Mobile
 Allow: /
+Crawl-delay: 0
+
+# Google News Bot
+User-agent: Googlebot-News
+Allow: /
+Crawl-delay: 0
+
+# Google Video Bot
+User-agent: Googlebot-Video
+Allow: /
+
+# Google AdSense Bot
+User-agent: Mediapartners-Google
+Allow: /
+
+# Google AdsBot
+User-agent: AdsBot-Google
+Allow: /
+
+# Google Mobile AdsBot
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+# Google Bard/Gemini Bot
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 0
+
+# ============================================
+# MICROSOFT BING BOTS
+# ============================================
 
 # Bing Search Bot
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 0.5
+Crawl-delay: 0
 
 # Bing Preview Bot
 User-agent: BingPreview
 Allow: /
+
+# Microsoft Copilot
+User-agent: MSNBot
+Allow: /
+
+# ============================================
+# OTHER MAJOR SEARCH ENGINES
+# ============================================
 
 # Yahoo Search Bot
 User-agent: Slurp
@@ -44,24 +76,48 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# Yandex Bot
+# Yandex (Russia)
 User-agent: Yandex
 Allow: /
 
-# Baidu Bot
+# Baidu (China)
 User-agent: Baiduspider
 Allow: /
 
+# Naver (South Korea)
+User-agent: Yeti
+Allow: /
+
+# Sogou (China)
+User-agent: Sogou
+Allow: /
+
+# Seznam (Czech Republic)
+User-agent: SeznamBot
+Allow: /
+
+# Qwant (Europe)
+User-agent: Qwantify
+Allow: /
+
+# Brave Search
+User-agent: Brave-Search
+Allow: /
+
 # ============================================
-# AI CRAWLERS & LLM TRAINING BOTS
+# AI CRAWLERS & LLM TRAINING BOTS (ALL ALLOWED)
 # ============================================
 
-# OpenAI GPT Bot
+# OpenAI GPTBot
 User-agent: GPTBot
 Allow: /
 
-# ChatGPT User Agent
+# OpenAI ChatGPT User Agent
 User-agent: ChatGPT-User
+Allow: /
+
+# OpenAI SearchBot
+User-agent: OAI-SearchBot
 Allow: /
 
 # Common Crawl (used by many AI systems)
@@ -90,27 +146,60 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
+User-agent: Meta-ExternalFetcher
+Allow: /
+
 # Cohere AI Bot
 User-agent: cohere-ai
 Allow: /
 
+# Google AI (Vertex/Bard)
+User-agent: Google-InspectionTool
+Allow: /
+
+# Amazon Alexa/Q
+User-agent: ia_archiver
+Allow: /
+
+# Apple Applebot
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# IBM Watson
+User-agent: WatsonBot
+Allow: /
+
 # ============================================
-# SOCIAL MEDIA CRAWLERS
+# SOCIAL MEDIA CRAWLERS (LINK PREVIEWS)
 # ============================================
 
 # LinkedIn Bot
 User-agent: LinkedInBot
 Allow: /
 
-# Twitter Bot
+# Twitter/X Bot
 User-agent: Twitterbot
 Allow: /
 
-# Facebook Bot (for link previews)
+# Facebook Link Preview
 User-agent: facebookexternalhit
 Allow: /
 
-# WhatsApp Bot (for link previews)
+User-agent: facebookcatalog
+Allow: /
+
+# Instagram
+User-agent: Instagram
+Allow: /
+
+# WhatsApp Link Preview
 User-agent: WhatsApp
 Allow: /
 
@@ -118,18 +207,59 @@ Allow: /
 User-agent: TelegramBot
 Allow: /
 
+# Pinterest Bot
+User-agent: Pinterestbot
+Allow: /
+
+# Slack Bot
+User-agent: Slackbot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+# Discord Bot
+User-agent: Discordbot
+Allow: /
+
+# Reddit Bot
+User-agent: redditbot
+Allow: /
+
 # ============================================
-# DISALLOWED PATHS
+# ARCHIVE & RESEARCH BOTS
 # ============================================
 
-# Block access to admin areas
+# Internet Archive Wayback Machine
+User-agent: ia_archiver
+Allow: /
+
+# Archive.org
+User-agent: archive.org_bot
+Allow: /
+
+# ============================================
+# DEFAULT RULE (ALL OTHER BOTS)
+# ============================================
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# ============================================
+# SECURITY RESTRICTIONS
+# ============================================
+
+# Block admin areas (if they exist in future)
+User-agent: *
 Disallow: /admin/
 Disallow: /administrator/
 Disallow: /wp-admin/
 Disallow: /private/
 Disallow: /internal/
+Disallow: /config/
 
-# Block access to temp and backup files
+# Block temp and backup files
 Disallow: /temp/
 Disallow: /tmp/
 Disallow: /backup/
@@ -141,7 +271,7 @@ Disallow: /*.tar$
 Disallow: /*.tar.gz$
 Disallow: /*.zip$
 
-# Block access to system files
+# Block system files
 Disallow: /.git/
 Disallow: /.svn/
 Disallow: /.htaccess
@@ -150,26 +280,28 @@ Disallow: /web.config
 Disallow: /.env
 Disallow: /.DS_Store
 
-# Block search and filter parameters to avoid duplicate content
-Disallow: /*?*sort=
-Disallow: /*?*filter=
-Disallow: /*?*search=
-Disallow: /*?*s=
-Disallow: /*?*q=
-
 # ============================================
-# ALLOWED RESOURCES
+# EXPLICIT ALLOWS (MAXIMUM VISIBILITY)
 # ============================================
 
-# Allow crawling of CSS
+# Main Pages
+Allow: /index.html
+Allow: /about.html
+Allow: /services.html
+Allow: /portfolio.html
+Allow: /contact.html
+Allow: /blog.html
+
+# Assets - CSS
 Allow: /styles.css
 Allow: /*.css$
 
-# Allow crawling of JavaScript
+# Assets - JavaScript
 Allow: /script.js
+Allow: /main.js
 Allow: /*.js$
 
-# Allow crawling of images
+# Assets - Images
 Allow: /images/
 Allow: /assets/
 Allow: /*.png$
@@ -180,17 +312,21 @@ Allow: /*.svg$
 Allow: /*.webp$
 Allow: /*.ico$
 
-# Allow crawling of fonts
+# Assets - Fonts
 Allow: /fonts/
 Allow: /*.woff$
 Allow: /*.woff2$
 Allow: /*.ttf$
 Allow: /*.eot$
 
-# Allow crawling of documents
+# Documents
 Allow: /*.pdf$
 Allow: /*.doc$
 Allow: /*.docx$
+
+# Manifest
+Allow: /site.webmanifest
+Allow: /manifest.json
 
 # ============================================
 # SITEMAP LOCATION
