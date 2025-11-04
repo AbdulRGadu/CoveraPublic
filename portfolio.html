@@ -602,6 +602,59 @@
             font-size: 14px;
         }
 
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .whatsapp-prompt {
+            background: #25d366;
+            color: #0a0a0a;
+            font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 999px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(8px) scale(0.98);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .whatsapp-prompt.show { opacity: 1; transform: translateY(0) scale(1); }
+        .whatsapp-prompt .char { display: inline-block; opacity: 0; transform: translateY(6px) scale(0.9); }
+        .whatsapp-prompt.show .char { animation: charPop 0.6s ease forwards; animation-delay: calc(var(--i) * 60ms); }
+
+        .whatsapp-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 16px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes charPop {
+            0% { opacity: 0; transform: translateY(6px) scale(0.9); }
+            60% { opacity: 1; transform: translateY(0) scale(1.06); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
         /* Social Links */
         .social-links {
             display: flex;
@@ -971,6 +1024,39 @@
     
     <!-- External JavaScript -->
     <script src="main.js"></script>
+    
+    <!-- Floating WhatsApp -->
+    <div class="whatsapp-float" aria-label="WhatsApp quick chat">
+        <div class="whatsapp-prompt" id="waPrompt">We’re Online, Lets chat!</div>
+        <a class="whatsapp-btn" href="https://wa.me/2349039639769?textHello%2C%20I%27d%20like%20to%20make%20enquiries" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+            <i class="bi bi-whatsapp" style="font-size: 28px;"></i>
+        </a>
+    </div>
+
+    <script>
+        (function setupWhatsAppPrompt() {
+            const promptEl = document.getElementById('waPrompt');
+            if (!promptEl) return;
+            const original = promptEl.textContent.trim();
+            promptEl.textContent = '';
+            const frag = document.createDocumentFragment();
+            [...original].forEach((ch, i) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.style.setProperty('--i', i);
+                span.textContent = ch === ' ' ? '\u00A0' : ch;
+                frag.appendChild(span);
+            });
+            promptEl.appendChild(frag);
+
+            const showDurationMs = 5000; const cycleMs = 10000;
+            function cycle() {
+                promptEl.classList.add('show');
+                setTimeout(() => { promptEl.classList.remove('show'); }, showDurationMs);
+            }
+            setTimeout(() => { cycle(); setInterval(cycle, cycleMs); }, 5000);
+        })();
+    </script>
 </body>
 </html>
 
