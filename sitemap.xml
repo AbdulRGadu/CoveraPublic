@@ -24,16 +24,16 @@
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://coveratechltd.com/@Covera_logo_color_logo_nbg-.png</image:loc>
+            <image:loc>https://coveratechltd.com/Covera_logo.png</image:loc>
             <image:title>Covera Tech Ltd - Premier Technology Solutions Provider in Nigeria</image:title>
             <image:caption>Leading technology company providing web development, mobile apps, cloud computing, AI/ML, and cybersecurity solutions</image:caption>
         </image:image>
         <image:image>
-            <image:loc>https://coveratechltd.com/@Covera_logo_color_logo_nbg-.png</image:loc>
+            <image:loc>https://coveratechltd.com/Covera_logo.png</image:loc>
             <image:title>Covera Tech Logo</image:title>
         </image:image>
         <image:image>
-            <image:loc>https://coveratechltd.com/@Covera_logo_color_logo_nbg-.png</image:loc>
+            <image:loc>https://coveratechltd.com/Covera_logo.png</image:loc>
             <image:title>Covera Tech Logo Black</image:title>
         </image:image>
     </url>
@@ -49,7 +49,7 @@
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
         <image:image>
-            <image:loc>https://coveratechltd.com/@Covera_logo_color_logo_nbg-.png</image:loc>
+            <image:loc>https://coveratechltd.com/Covera_logo.png</image:loc>
             <image:title>Covera Tech Services - Web Development, Mobile Apps, Cloud, AI/ML</image:title>
         </image:image>
     </url>
@@ -61,7 +61,7 @@
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
         <image:image>
-            <image:loc>https://coveratechltd.com/@Covera_logo_color_logo_nbg-.png</image:loc>
+            <image:loc>https://coveratechltd.com/Covera_logo.png</image:loc>
             <image:title>About Covera Tech - Leading Technology Solutions Provider</image:title>
         </image:image>
     </url>
@@ -89,7 +89,7 @@
         <changefreq>daily</changefreq>
         <priority>0.92</priority>
         <image:image>
-            <image:loc>https://coveratechltd.com/@Covera_logo_color_logo_nbg-.png</image:loc>
+            <image:loc>https://coveratechltd.com/Covera_logo.png</image:loc>
             <image:title>Covera Tech Blog - Technology Insights, Web Development, AI, Cloud Computing</image:title>
         </image:image>
     </url>
