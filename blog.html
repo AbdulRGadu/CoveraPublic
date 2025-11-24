@@ -1049,6 +1049,11 @@
             margin-bottom: 80px;
         }
 
+        .footer-brand img {
+            display: block;
+            margin: 0 auto 12px;
+        }
+
         .footer-brand h3 {
             font-family: 'Space Grotesk', sans-serif;
             color: white;
@@ -1056,6 +1061,7 @@
             font-weight: 700;
             margin-bottom: 20px;
             letter-spacing: -1px;
+            text-align: center;
         }
 
         .footer-brand p {
@@ -1146,6 +1152,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .whatsapp-float.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .whatsapp-prompt {
@@ -1753,7 +1767,7 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/covera_logo_color_logo_nbg.png" alt="Covera Tech Logo" style="height: 32px; width: auto; vertical-align: middle;">
+                <img src="assets/covera_logo.png" alt="Covera Tech Logo" style="height: 32px; width: auto; vertical-align: middle;">
                 Covera<span class="logo-accent">Tech</span>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -2307,8 +2321,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
+                <img src="assets/covera_logo.png" alt="Covera Tech Logo" style="height: 36px; width: auto;">
                 <h3>
-                    <img src="assets/covera_logo_color_logo_nbg.png" alt="Covera Tech Logo" style="height: 36px; width: auto; vertical-align: middle;">
                     Covera<span style="color: var(--primary);">Tech</span>
                 </h3>
                 <p>Building tomorrow's digital solutions today. We combine innovation, creativity, and technical excellence to deliver exceptional results.</p>
@@ -2729,7 +2743,8 @@
     <script>
         (function setupWhatsAppPrompt() {
             const promptEl = document.getElementById('waPrompt');
-            if (!promptEl) return;
+            const whatsappFloat = document.querySelector('.whatsapp-float');
+            if (!promptEl || !whatsappFloat) return;
             const original = promptEl.textContent.trim();
             promptEl.textContent = '';
             const frag = document.createDocumentFragment();
@@ -2743,11 +2758,27 @@
             promptEl.appendChild(frag);
 
             const showDurationMs = 5000; const cycleMs = 10000;
-            function cycle() {
-                promptEl.classList.add('show');
-                setTimeout(() => { promptEl.classList.remove('show'); }, showDurationMs);
+            const heroSection = document.querySelector('.page-hero') || document.querySelector('.hero');
+            const heroHeight = heroSection ? heroSection.offsetHeight : window.innerHeight;
+
+            function checkScroll() {
+                if (window.scrollY > heroHeight) {
+                    whatsappFloat.classList.add('visible');
+                } else {
+                    whatsappFloat.classList.remove('visible');
+                }
             }
-            setTimeout(() => { cycle(); setInterval(cycle, cycleMs); }, 5000);
+
+            function cycle() {
+                if (whatsappFloat.classList.contains('visible')) {
+                    promptEl.classList.add('show');
+                    setTimeout(() => { promptEl.classList.remove('show'); }, showDurationMs);
+                }
+            }
+
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+            setTimeout(() => { cycle(); setInterval(cycle, cycleMs); }, 1000);
         })();
     </script>
 
