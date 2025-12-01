@@ -1,25 +1,81 @@
 {
-    "name": "Covera Tech Ltd - Technology Solutions",
+    "name": "Covera Tech - Leading Technology Solutions & Software Development Company",
     "short_name": "Covera Tech",
-    "description": "Complete technology and software solutions for businesses. If technology can solve it, we'll build it.",
+    "description": "Award-winning technology solutions provider in Nigeria & Africa. Expert web development, mobile apps, cloud computing, AI/ML, cybersecurity & IT consulting. Transform your business with enterprise-grade software solutions.",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
-    "background_color": "#0B1D39",
-    "theme_color": "#00B8A9",
-    "orientation": "portrait-primary",
+    "background_color": "#ffffff",
+    "theme_color": "#0066ff",
+    "orientation": "any",
     "icons": [
         {
-            "src": "/android-chrome-192x192.png",
+            "src": "/Covera_logo.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "/android-chrome-512x512.png",
+            "src": "/Covera_logo.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/Covera_logo.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/Covera_logo.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/Covera_logo.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/Covera_logo.png",
+            "sizes": "48x48",
+            "type": "image/png",
+            "purpose": "any"
         }
     ],
-    "categories": ["technology", "business", "software", "development"],
-    "lang": "en",
-    "dir": "ltr"
+    "categories": ["technology", "business", "software", "development", "web development", "mobile apps", "cloud computing", "artificial intelligence"],
+    "lang": "en-NG",
+    "dir": "ltr",
+    "prefer_related_applications": false,
+    "related_applications": [],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "Contact Us",
+            "short_name": "Contact",
+            "description": "Get in touch with Covera Tech",
+            "url": "/contact.html",
+            "icons": [
+                {
+                    "src": "/Covera_logo.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Services",
+            "short_name": "Services",
+            "description": "View our technology services",
+            "url": "/services.html",
+            "icons": [
+                {
+                    "src": "/Covera_logo.png",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ]
 }

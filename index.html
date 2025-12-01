@@ -54,24 +54,46 @@
     <link rel="icon" type="image/png" sizes="16x16" href="Covera_logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="Covera_logo.png">
     <link rel="mask-icon" href="Covera_logo.png" color="#0066ff">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#0066ff">
     <meta name="msapplication-TileColor" content="#0066ff">
+    <meta name="msapplication-config" content="/browserconfig.xml">
     
     <!-- Title - Optimized for SEO and CTR -->
     <title>Covera Tech - Leading Technology Solutions & Software Development Company in Nigeria | Web, Mobile, Cloud, AI Services</title>
-    <!-- DNS Prefetch and Preconnect for Performance -->
+    <!-- Performance: DNS Prefetch and Preconnect -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     
-    <!-- Optimized Font Loading with display=swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Performance: Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="main.js" as="script">
+    <link rel="preload" href="Covera_logo.png" as="image" type="image/png">
+    
+    <!-- Performance: Optimized Font Loading with display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
     <!-- Bootstrap Icons for brand logos -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
     
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Security: Content Security Policy (relaxed for inline styles) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'self';">
+    
+    <!-- Security: Additional Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     
     <!-- JSON-LD Structured Data for Enhanced SEO -->
     <script type="application/ld+json">
@@ -1683,7 +1705,7 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo" aria-label="Covera Tech - Home">
-                <img src="covera_logo.png" alt="Covera Tech Logo - Leading Technology Solutions Provider in Nigeria"  style="height: 40px; width: auto; vertical-align: middle;">
+                <img src="covera_logo.png" alt="Covera Tech Logo - Leading Technology Solutions Provider in Nigeria" width="120" height="40" loading="eager" decoding="async" style="height: 40px; width: auto; vertical-align: middle;">
                 Covera<span class="logo-accent">Tech</span>
             </a>
             <ul class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
@@ -1952,7 +1974,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand" itemscope itemtype="https://schema.org/Organization">
-                <img src="covera_logo.png" alt="Covera Tech Logo - Premier Technology Solutions Provider" style="height: 40px; width: auto;">
+                <img src="covera_logo.png" alt="Covera Tech Logo - Premier Technology Solutions Provider" width="120" height="40" loading="lazy" decoding="async" style="height: 40px; width: auto;">
                 <h3>
                     <span itemprop="name">Covera<span style="color: var(--primary);">Tech</span></span>
                 </h3>
@@ -2155,6 +2177,21 @@
     
     <!-- External JavaScript -->
     <script src="main.js"></script>
+    
+    <!-- Service Worker Registration for Offline Support -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
     
     <!-- Floating WhatsApp -->
     <div class="whatsapp-float" aria-label="WhatsApp quick chat">
