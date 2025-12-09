@@ -1,0 +1,49 @@
+# Covera Tech Ltd - Corporate Website
+
+## Project Overview
+This project is the corporate website for Covera Tech Ltd, a leading technology solutions provider based in Lagos, Nigeria. The website showcases the company's services, portfolio, and contact information.
+
+## Company Description
+Covera Tech Ltd provides complete software and technology solutions for businesses. Their services include:
+- Web Development (React, Vue.js, Node.js, Python, Django, .NET)
+- Mobile App Development (iOS, Android, React Native, Flutter, MAUI)
+- Cloud Computing Solutions (AWS, Azure, Google Cloud)
+- Artificial Intelligence & Machine Learning
+- Chat bots & Automation services 
+- Cybersecurity Services
+- Digital Marketing & SEO
+- IT Consulting & Support
+
+## Technical Stack
+- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
+- **Styling**: Custom CSS with CSS variables, Flexbox, Grid
+- **Fonts**: 'Inter' and 'Space Grotesk' via Google Fonts
+- **Icons**: Bootstrap Icons
+- **Performance**: Preloading critical resources, lazy loading, optimized meta tags
+- **SEO**: JSON-LD structured data, meta descriptions, Open Graph tags
+
+## Project Structure
+- `index.html`: Main landing page with hero section, bento grid of features, services summary, and testimonials.
+- `services.html`: Detailed description of all services offered.
+- `about.html`: Information about the company, mission, and team.
+- `contact.html`: Contact form and location details.
+- `portfolio.html`: Showcase of past projects.
+- `blog.html`: Tech insights and news.
+- `styles.css`: Main stylesheet containing all global styles, variables, and animations.
+- `main.js`: Main JavaScript file for interactivity (e.g., mobile menu).
+- `script.js`: Additional scripts.
+- `assets/`: Directory for images and other static assets.
+- `site.webmanifest`: Web app manifest for PWA capabilities.
+- `sw.js`: Service worker for offline support.
+
+## Key Features
+- **Responsive Design**: Mobile-first approach ensuring compatibility across devices.
+- **Interactive Elements**: Custom cursor, scroll progress bar, hover effects, floating cards.
+- **Animations**: CSS animations for hero elements, scroll-triggered reveals using Intersection Observer.
+- **Floating WhatsApp Widget**: Quick chat functionality for user engagement.
+- **Performance Optimization**: DNS prefetching, resource preloading.
+
+## Contact Information
+- **Email**: info@coveratechltd.com
+- **Phone**: +234-907-988-7201
+
